@@ -1,0 +1,77 @@
+{
+	"name": "Configuration",
+	"properties": {
+		"id": {
+			"type": "string",
+			"required": false,
+			"length": 35,
+			"precision": null,
+			"scale": null,
+			"id": 1,
+			"mysql": {
+				"columnName": "id",
+				"dataType": "varchar",
+				"dataLength": 35,
+				"dataPrecision": null,
+				"dataScale": null,
+				"nullable": "N"
+			},
+			"updateOnly": false
+		},
+		"alias": {
+			"type": "string",
+			"required": true,
+			"length": 50,
+			"precision": null,
+			"scale": null,
+			"mysql": {
+				"columnName": "alias",
+				"dataType": "varchar",
+				"dataLength": 50,
+				"dataPrecision": null,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		},
+		"value": {
+			"type": "number",
+			"required": true,
+			"length": null,
+			"precision": 3,
+			"scale": 0,
+			"mysql": {
+				"columnName": "value",
+				"dataType": "tinyint",
+				"dataLength": null,
+				"dataPrecision": 3,
+				"dataScale": 0,
+				"nullable": "N"
+			}
+		},
+		"description": {
+			"type": "string",
+			"required": true,
+			"length": 4294967295,
+			"precision": null,
+			"scale": null,
+			"mysql": {
+				"columnName": "description",
+				"dataType": "longtext",
+				"dataLength": 4294967295,
+				"dataPrecision": null,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		}
+	},
+	"settings": {
+		"strict": false,
+		"forceId": false,
+		"replaceOnPUT": true,
+		"idInjection": false,
+		"mysql": {
+			"schema": "db1",
+			"table": "customer"
+		}
+	}
+}

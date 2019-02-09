@@ -1,0 +1,47 @@
+{
+	"name": "Unit",
+	"properties": {
+		"id": {
+			"type": "string",
+			"required": false,
+			"length": 35,
+			"precision": null,
+			"scale": null,
+			"id": 1,
+			"mysql": {
+				"columnName": "id",
+				"dataType": "varchar",
+				"dataLength": 35,
+				"dataPrecision": null,
+				"dataScale": null,
+				"nullable": "N"
+			},
+			"updateOnly": false
+		},
+		"title": {
+			"type": "string",
+			"required": true,
+			"length": 20,
+			"precision": null,
+			"scale": null,
+			"mysql": {
+				"columnName": "title",
+				"dataType": "varchar",
+				"dataLength": 20,
+				"dataPrecision": null,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		}
+	},
+	"settings": {
+		"strict": false,
+		"forceId": false,
+		"replaceOnPUT": true,
+		"idInjection": false,
+		"mysql": {
+			"schema": "db1",
+			"table": "unit"
+		}
+	}
+}

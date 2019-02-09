@@ -1,0 +1,156 @@
+{
+	"name": "Purchasepayment",
+	"properties": {
+		"id": {
+			"type": "string",
+			"required": false,
+			"length": 35,
+			"precision": null,
+			"scale": null,
+			"id": 1,
+			"mysql": {
+				"columnName": "id",
+				"dataType": "varchar",
+				"dataLength": 35,
+				"dataPrecision": null,
+				"dataScale": null,
+				"nullable": "N"
+			},
+			"updateOnly": false
+		},
+		"pendingamount": {
+			"type": "number",
+			"required": true,
+			"length": null,
+			"precision": 22,
+			"scale": null,
+			"mysql": {
+				"columnName": "pendingAmount",
+				"dataType": "double",
+				"dataLength": null,
+				"dataPrecision": 22,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		},
+		"recievedamount": {
+			"type": "number",
+			"required": true,
+			"length": null,
+			"precision": 22,
+			"scale": null,
+			"mysql": {
+				"columnName": "recievedAmount",
+				"dataType": "double",
+				"dataLength": null,
+				"dataPrecision": 22,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		},
+		"paymentdate": {
+			"type": "date",
+			"required": true,
+			"length": null,
+			"precision": null,
+			"scale": null,
+			"mysql": {
+				"columnName": "paymentDate",
+				"dataType": "datetime",
+				"dataLength": null,
+				"dataPrecision": null,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		},
+		"chequeno": {
+			"type": "string",
+			"required": true,
+			"length": 50,
+			"precision": null,
+			"scale": null,
+			"mysql": {
+				"columnName": "chequeNo",
+				"dataType": "varchar",
+				"dataLength": 50,
+				"dataPrecision": null,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		},
+		"createdon": {
+			"type": "date",
+			"required": true,
+			"length": null,
+			"precision": null,
+			"scale": null,
+			"mysql": {
+				"columnName": "createdOn",
+				"dataType": "timestamp",
+				"dataLength": null,
+				"dataPrecision": null,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		},
+		"modifiedon": {
+			"type": "date",
+			"required": true,
+			"length": null,
+			"precision": null,
+			"scale": null,
+			"mysql": {
+				"columnName": "modifiedOn",
+				"dataType": "timestamp",
+				"dataLength": null,
+				"dataPrecision": null,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		}
+	},
+	"settings": {
+		"strict": false,
+		"forceId": false,
+		"replaceOnPUT": true,
+		"idInjection": false,
+		"mysql": {
+			"schema": "db1",
+			"table": "purchasepayment"
+		}
+	},
+	"relations": {
+		"purchase": {
+			"type": "belongsTo",
+			"model": "Purchase",
+			"foreignKey": "",
+			"options": {
+			  "nestRemoting": true
+			}
+		  },
+		  "payment": {
+			"type": "belongsTo",
+			"model": "Payment",
+			"foreignKey": "",
+			"options": {
+			  "nestRemoting": true
+			}
+		  },
+		"createdBy": {
+			"type": "belongsTo",
+			"model": "User",
+			"foreignKey": "",
+			"options": {
+			  "nestRemoting": true
+			}
+		  },
+		  "modifiedBy": {
+			"type": "belongsTo",
+			"model": "User",
+			"foreignKey": "",
+			"options": {
+			  "nestRemoting": true
+			}
+		  }
+	}
+}

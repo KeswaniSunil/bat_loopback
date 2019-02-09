@@ -1,0 +1,110 @@
+{
+	"name": "Orderitem",
+	"properties": {
+		"id": {
+			"type": "string",
+			"required": false,
+			"length": 35,
+			"precision": null,
+			"scale": null,
+			"id": 1,
+			"mysql": {
+				"columnName": "id",
+				"dataType": "varchar",
+				"dataLength": 35,
+				"dataPrecision": null,
+				"dataScale": null,
+				"nullable": "N"
+			},
+			"updateOnly": false
+		},
+		"quantity": {
+			"type": "number",
+			"required": true,
+			"length": null,
+			"precision": 10,
+			"scale": 0,
+			"mysql": {
+				"columnName": "quantity",
+				"dataType": "int",
+				"dataLength": null,
+				"dataPrecision": 10,
+				"dataScale": 0,
+				"nullable": "N"
+			}
+		},
+		"itemprice": {
+			"type": "number",
+			"required": true,
+			"length": null,
+			"precision": 22,
+			"scale": 0,
+			"mysql": {
+				"columnName": "itemPrice",
+				"dataType": "double",
+				"dataLength": null,
+				"dataPrecision": 22,
+				"dataScale": 0,
+				"nullable": "N"
+			}
+		},
+		"taxprice": {
+			"type": "number",
+			"required": true,
+			"length": null,
+			"precision": 22,
+			"scale": 0,
+			"mysql": {
+				"columnName": "taxPrice",
+				"dataType": "double",
+				"dataLength": null,
+				"dataPrecision": 22,
+				"dataScale": 0,
+				"nullable": "N"
+			}
+		},
+		"series": {
+			"type": "number",
+			"required": true,
+			"length": null,
+			"precision": 10,
+			"scale": 0,
+			"mysql": {
+				"columnName": "series",
+				"dataType": "int",
+				"dataLength": null,
+				"dataPrecision": 10,
+				"dataScale": 0,
+				"nullable": "N"
+			}
+		}
+	},
+	"settings": {
+		"strict": false,
+		"forceId": false,
+		"replaceOnPUT": true,
+		"idInjection": false,
+		"mysql": {
+			"schema": "db1",
+			"table": "orderitem"
+		}
+	},
+	"relations": {
+		"order": {
+			"type": "belongsTo",
+			"model": "Orders",
+			"foreignKey": "",
+			"options": {
+			  "nestRemoting": true
+			}
+		  },
+		  "item": {
+			"type": "belongsTo",
+			"model": "Items",
+			"foreignKey": "",
+			"options": {
+			  "nestRemoting": true
+			}
+		  }
+	}
+}

@@ -1,0 +1,26 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "jdm_main": {
+    "host": "localhost",
+    "port": 3306,
+    "url": "",
+    "database": "mymain",
+    "password": "",
+    "name": "jdm_main",
+    "user": "root",
+    "connector": "mysql"
+  },
+  "db1": {
+    "host": "localhost",
+    "port": 3306,
+    "url": "",
+    "database": "db11",
+    "password": "",
+    "name": "db1",
+    "user": "root",
+    "connector": "mysql"
+  }
+}

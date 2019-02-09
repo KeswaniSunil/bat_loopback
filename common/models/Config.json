@@ -1,0 +1,65 @@
+{
+	"name": "Config",
+	"properties": {
+		"id": {
+			"type": "string",
+			"required": false,
+			"length": 35,
+			"precision": null,
+			"scale": null,
+			"id": 1,
+			"mysql": {
+				"columnName": "id",
+				"dataType": "varchar",
+				"dataLength": 35,
+				"dataPrecision": null,
+				"dataScale": null,
+				"nullable": "N"
+			},
+			"updateOnly": false
+		},
+		"dbName": {
+			"type": "string",
+			"required": true,
+			"length": 50,
+			"precision": null,
+			"scale": null,
+			"mysql": {
+				"columnName": "db_name",
+				"dataType": "varchar",
+				"dataLength": 50,
+				"dataPrecision": null,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		}
+	},
+	"settings": {
+		"strict": false,
+		"forceId": false,
+		"replaceOnPUT": true,
+		"idInjection": false,
+		"mysql": {
+			"schema": "jdm_main",
+			"table": "config"
+		}
+	},
+    "relations": {
+    "user": {
+      "type": "belongsTo",
+      "model": "User",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "company": {
+      "type": "belongsTo",
+      "model": "Companydetails",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    }
+  }
+}

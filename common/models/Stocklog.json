@@ -1,0 +1,72 @@
+{
+	"name": "Stocklog",
+	"properties": {
+		"id": {
+			"type": "string",
+			"required": false,
+			"length": 35,
+			"precision": null,
+			"scale": null,
+			"id": 1,
+			"mysql": {
+				"columnName": "id",
+				"dataType": "varchar",
+				"dataLength": 35,
+				"dataPrecision": null,
+				"dataScale": null,
+				"nullable": "N"
+			},
+			"updateOnly": false
+		},
+		"quantity": {
+			"type": "number",
+			"required": true,
+			"length": null,
+			"precision": 22,
+			"scale": null,
+			"mysql": {
+				"columnName": "quantity",
+				"dataType": "double",
+				"dataLength": null,
+				"dataPrecision": 22,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		},
+		"usedstock": {
+			"type": "number",
+			"required": true,
+			"length": null,
+			"precision": 22,
+			"scale": null,
+			"mysql": {
+				"columnName": "usedStock",
+				"dataType": "double",
+				"dataLength": null,
+				"dataPrecision": 22,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		}
+	},
+	"settings": {
+		"strict": false,
+		"forceId": false,
+		"replaceOnPUT": true,
+		"idInjection": false,
+		"mysql": {
+			"schema": "db1",
+			"table": "stocklog"
+		}
+	},
+	"relations": {
+		"item": {
+			"type": "belongsTo",
+			"model": "Items",
+			"foreignKey": "",
+			"options": {
+			  "nestRemoting": true
+			}
+		  }
+	}
+}

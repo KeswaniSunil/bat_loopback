@@ -1,0 +1,216 @@
+{
+	"name": "Orders",
+	"properties": {
+		"id": {
+			"type": "string",
+			"required": false,
+			"length": 35,
+			"precision": null,
+			"scale": null,
+			"id": 1,
+			"mysql": {
+				"columnName": "id",
+				"dataType": "varchar",
+				"dataLength": 35,
+				"dataPrecision": null,
+				"dataScale": null,
+				"nullable": "N"
+			},
+			"updateOnly": false
+		},
+		"itemtotal": {
+			"type": "number",
+			"required": true,
+			"length": null,
+			"precision": 22,
+			"scale": null,
+			"mysql": {
+				"columnName": "itemTotal",
+				"dataType": "double",
+				"dataLength": null,
+				"dataPrecision": 22,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		},
+		"discount": {
+			"type": "number",
+			"required": true,
+			"length": null,
+			"precision": 22,
+			"scale": null,
+			"mysql": {
+				"columnName": "discount",
+				"dataType": "double",
+				"dataLength": null,
+				"dataPrecision": 22,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		},
+		"charges": {
+			"type": "number",
+			"required": true,
+			"length": null,
+			"precision": 22,
+			"scale": null,
+			"mysql": {
+				"columnName": "charges",
+				"dataType": "double",
+				"dataLength": null,
+				"dataPrecision": 22,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		},
+		"taxamount": {
+			"type": "number",
+			"required": true,
+			"length": null,
+			"precision": 22,
+			"scale": null,
+			"mysql": {
+				"columnName": "taxAmount",
+				"dataType": "double",
+				"dataLength": null,
+				"dataPrecision": 22,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		},
+		"billno": {
+			"type": "number",
+			"required": true,
+			"length": null,
+			"precision": 10,
+			"scale": 0,
+			"mysql": {
+				"columnName": "billNo",
+				"dataType": "int",
+				"dataLength": null,
+				"dataPrecision": 10,
+				"dataScale": 0,
+				"nullable": "N"
+			}
+		},
+		"totalamount": {
+			"type": "number",
+			"required": true,
+			"length": null,
+			"precision": 22,
+			"scale": null,
+			"mysql": {
+				"columnName": "totalAmount",
+				"dataType": "double",
+				"dataLength": null,
+				"dataPrecision": 22,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		},
+		"gstin": {
+			"type": "string",
+			"required": true,
+			"length": 50,
+			"precision": null,
+			"scale": null,
+			"mysql": {
+				"columnName": "gstin",
+				"dataType": "varchar",
+				"dataLength": 50,
+				"dataPrecision": null,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		},
+		"billdate": {
+			"type": "date",
+			"required": true,
+			"length": null,
+			"precision": null,
+			"scale": null,
+			"mysql": {
+				"columnName": "billDate",
+				"dataType": "date",
+				"dataLength": null,
+				"dataPrecision": null,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		},
+		"createdon": {
+			"type": "date",
+			"required": true,
+			"length": null,
+			"precision": null,
+			"scale": null,
+			"mysql": {
+				"columnName": "createdOn",
+				"dataType": "timestamp",
+				"dataLength": null,
+				"dataPrecision": null,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		},
+		"modifiedon": {
+			"type": "date",
+			"required": true,
+			"length": null,
+			"precision": null,
+			"scale": null,
+			"mysql": {
+				"columnName": "modifiedOn",
+				"dataType": "timestamp",
+				"dataLength": null,
+				"dataPrecision": null,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		}
+	},
+	"settings": {
+		"strict": false,
+		"forceId": false,
+		"replaceOnPUT": true,
+		"idInjection": false,
+		"mysql": {
+			"schema": "db1",
+			"table": "orders"
+		}
+	},
+	"relations": {
+		"customer": {
+			"type": "belongsTo",
+			"model": "Customer",
+			"foreignKey": "",
+			"options": {
+			  "nestRemoting": true
+			}
+		  },
+        "billbook": {
+			"type": "belongsTo",
+			"model": "Billbook",
+			"foreignKey": "",
+			"options": {
+			  "nestRemoting": true
+			}
+		  },
+        "createdBy": {
+			"type": "belongsTo",
+			"model": "User",
+			"foreignKey": "",
+			"options": {
+			  "nestRemoting": true
+			}
+		  },
+		  "modifiedBy": {
+			"type": "belongsTo",
+			"model": "User",
+			"foreignKey": "",
+			"options": {
+			  "nestRemoting": true
+			}
+		  }
+	}
+}

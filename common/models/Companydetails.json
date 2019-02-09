@@ -1,0 +1,137 @@
+{
+	"name": "Companydetails",
+	"properties": {
+		"id": {
+			"type": "string",
+			"required": false,
+			"length": 35,
+			"precision": null,
+			"scale": null,
+			"id": 1,
+			"mysql": {
+				"columnName": "id",
+				"dataType": "varchar",
+				"dataLength": 35,
+				"dataPrecision": null,
+				"dataScale": null,
+				"nullable": "N"
+			},
+			"updateOnly": false
+		},
+		"name": {
+			"type": "string",
+			"required": true,
+			"length": 100,
+			"precision": null,
+			"scale": null,
+			"mysql": {
+				"columnName": "name",
+				"dataType": "varchar",
+				"dataLength": 100,
+				"dataPrecision": null,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		},
+		"mobile": {
+			"type": "string",
+			"required": true,
+			"length": 10,
+			"precision": null,
+			"scale": null,
+			"mysql": {
+				"columnName": "mobile",
+				"dataType": "varchar",
+				"dataLength": 10,
+				"dataPrecision": null,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		},
+		"address": {
+			"type": "string",
+			"required": true,
+			"length": 4294967295,
+			"precision": null,
+			"scale": null,
+			"mysql": {
+				"columnName": "address",
+				"dataType": "longtext",
+				"dataLength": 4294967295,
+				"dataPrecision": null,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		},
+		"state": {
+			"type": "string",
+			"required": true,
+			"length": 50,
+			"precision": null,
+			"scale": null,
+			"mysql": {
+				"columnName": "state",
+				"dataType": "varchar",
+				"dataLength": 50,
+				"dataPrecision": null,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		},
+		"city": {
+			"type": "string",
+			"required": true,
+			"length": 50,
+			"precision": null,
+			"scale": null,
+			"mysql": {
+				"columnName": "city",
+				"dataType": "varchar",
+				"dataLength": 50,
+				"dataPrecision": null,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		},
+		"statecode": {
+			"type": "number",
+			"required": true,
+			"length": null,
+			"precision": 10,
+			"scale": 0,
+			"mysql": {
+				"columnName": "stateCode",
+				"dataType": "int",
+				"dataLength": null,
+				"dataPrecision": 10,
+				"dataScale": 0,
+				"nullable": "N"
+			}
+		},
+		"logo": {
+			"type": "string",
+			"required": true,
+			"length": 200,
+			"precision": null,
+			"scale": null,
+			"mysql": {
+				"columnName": "logo",
+				"dataType": "varchar",
+				"dataLength": 200,
+				"dataPrecision": null,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		}
+	},
+	"settings": {
+		"strict": false,
+		"forceId": false,
+		"replaceOnPUT": true,
+		"idInjection": false,
+		"mysql": {
+			"schema": "jdm_main",
+			"table": "companydetails"
+		}
+	}
+}

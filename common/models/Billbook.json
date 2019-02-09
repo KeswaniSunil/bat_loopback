@@ -1,0 +1,77 @@
+{
+	"name": "Billbook",
+	"properties": {
+		"id": {
+			"type": "string",
+			"required": false,
+			"length": 35,
+			"precision": null,
+			"scale": null,
+			"id": 1,
+			"mysql": {
+				"columnName": "id",
+				"dataType": "varchar",
+				"dataLength": 35,
+				"dataPrecision": null,
+				"dataScale": null,
+				"nullable": "N"
+			},
+			"updateOnly": false
+		},
+		"title": {
+			"type": "string",
+			"required": true,
+			"length": 50,
+			"precision": null,
+			"scale": null,
+			"mysql": {
+				"columnName": "title",
+				"dataType": "varchar",
+				"dataLength": 50,
+				"dataPrecision": null,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		},
+        "prefix": {
+			"type": "string",
+			"required": true,
+			"length": 5,
+			"precision": null,
+			"scale": null,
+			"mysql": {
+				"columnName": "prefix",
+				"dataType": "varchar",
+				"dataLength": 50,
+				"dataPrecision": null,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		},
+        "series": {
+			"type": "number",
+			"required": true,
+			"length": null,
+			"precision": 22,
+			"scale": null,
+			"mysql": {
+				"columnName": "series",
+				"dataType": "double",
+				"dataLength": null,
+				"dataPrecision": 22,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		}
+	},
+	"settings": {
+		"strict": false,
+		"forceId": false,
+		"replaceOnPUT": true,
+		"idInjection": false,
+		"mysql": {
+			"schema": "jdm_main",
+			"table": "config"
+		}
+	}
+}
