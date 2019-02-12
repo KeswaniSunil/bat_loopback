@@ -34,16 +34,16 @@
 			}
 		},
 		"discount": {
-			"type": "number",
+			"type": "string",
 			"required": true,
-			"length": null,
-			"precision": 22,
+			"length": 15,
+			"precision": null,
 			"scale": null,
 			"mysql": {
 				"columnName": "discount",
-				"dataType": "double",
-				"dataLength": null,
-				"dataPrecision": 22,
+				"dataType": "varchar",
+				"dataLength": 15,
+				"dataPrecision": null,
 				"dataScale": null,
 				"nullable": "N"
 			}
@@ -131,6 +131,21 @@
 			"scale": null,
 			"mysql": {
 				"columnName": "billDate",
+				"dataType": "date",
+				"dataLength": null,
+				"dataPrecision": null,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		},
+        "duedate": {
+			"type": "date",
+			"required": false,
+			"length": null,
+			"precision": null,
+			"scale": null,
+			"mysql": {
+				"columnName": "dueDate",
 				"dataType": "date",
 				"dataLength": null,
 				"dataPrecision": null,

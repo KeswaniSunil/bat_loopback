@@ -183,6 +183,34 @@
 				"nullable": "N"
 			}
 		},
+        "totalamount": {
+			"type": "number",
+			"required": false,
+			"length": null,
+			"precision": 22,
+			"scale": 0,
+			"mysql": {
+				"columnName": "totalAmount",
+				"dataType": "double",
+				"dataLength": null,
+				"dataPrecision": 22,
+				"dataScale": 0
+			}
+		},
+		"paid": {
+			"type": "number",
+			"required": false,
+			"length": null,
+			"precision": 22,
+			"scale": 0,
+			"mysql": {
+				"columnName": "paid",
+				"dataType": "double",
+				"dataLength": null,
+				"dataPrecision": 22,
+				"dataScale": 0
+			}
+		},
 		"createdon": {
 			"type": "date",
 			"required": true,

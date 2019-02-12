@@ -80,7 +80,7 @@
 		},
 		"notes": {
 			"type": "string",
-			"required": true,
+			"required": false,
 			"length": 4294967295,
 			"precision": null,
 			"scale": null,
@@ -89,6 +89,19 @@
 				"dataType": "longtext",
 				"dataLength": 4294967295,
 				"dataPrecision": null,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		},
+        "series": {
+			"type": "number",
+			"required": true,
+			"precision": 11,
+			"scale": null,
+			"mysql": {
+				"columnName": "series",
+				"dataType": "integer",
+				"dataPrecision": 11,
 				"dataScale": null,
 				"nullable": "N"
 			}
