@@ -1,5 +1,5 @@
 {
-	"name": "Orderpayment",
+	"name": "Transport",
 	"properties": {
 		"id": {
 			"type": "string",
@@ -18,78 +18,39 @@
 			},
 			"updateOnly": false
 		},
-        "paymentmethod": {
+		"name": {
 			"type": "string",
 			"required": true,
-			"length": 30,
+			"length": 150,
 			"precision": null,
 			"scale": null,
+			"id": 1,
 			"mysql": {
-				"columnName": "paymentMethod",
+				"columnName": "name",
 				"dataType": "varchar",
-				"dataLength": 30,
+				"dataLength": 150,
 				"dataPrecision": null,
 				"dataScale": null,
 				"nullable": "N"
-			}
+			},
+			"updateOnly": false
 		},
-		"recievedamount": {
-			"type": "number",
-			"required": true,
-			"length": null,
-			"precision": 22,
-			"scale": null,
-			"mysql": {
-				"columnName": "recievedAmount",
-				"dataType": "double",
-				"dataLength": null,
-				"dataPrecision": 22,
-				"dataScale": null,
-				"nullable": "N"
-			}
-		},
-		"paymentdate": {
-			"type": "date",
-			"required": true,
-			"length": null,
-			"precision": null,
-			"scale": null,
-			"mysql": {
-				"columnName": "paymentDate",
-				"dataType": "datetime",
-				"dataLength": null,
-				"dataPrecision": null,
-				"dataScale": null,
-				"nullable": "N"
-			}
-		},
-		"notes": {
+		"vehicleno": {
 			"type": "string",
-			"required": false,
-			"length": 4294967295,
+			"required": true,
+			"length": 20,
 			"precision": null,
 			"scale": null,
+			"id": 1,
 			"mysql": {
-				"columnName": "Notes",
-				"dataType": "longtext",
-				"dataLength": 4294967295,
+				"columnName": "vehicleNo",
+				"dataType": "varchar",
+				"dataLength": 20,
 				"dataPrecision": null,
 				"dataScale": null,
 				"nullable": "N"
-			}
-		},
-        "series": {
-			"type": "number",
-			"required": true,
-			"precision": 11,
-			"scale": null,
-			"mysql": {
-				"columnName": "series",
-				"dataType": "integer",
-				"dataPrecision": 11,
-				"dataScale": null,
-				"nullable": "N"
-			}
+			},
+			"updateOnly": false
 		},
 		"createdon": {
 			"type": "date",
@@ -129,18 +90,10 @@
 		"idInjection": false,
 		"mysql": {
 			"schema": "db1",
-			"table": "orderpayment"
+			"table": "orders"
 		}
 	},
 	"relations": {
-		"order": {
-			"type": "belongsTo",
-			"model": "Orders",
-			"foreignKey": "",
-			"options": {
-			  "nestRemoting": true
-			}
-		  },
 		"createdBy": {
 			"type": "belongsTo",
 			"model": "User",

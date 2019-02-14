@@ -153,6 +153,36 @@
 				"nullable": "N"
 			}
 		},
+		"dateofsupply": {
+			"type": "date",
+			"required": false,
+			"length": null,
+			"precision": null,
+			"scale": null,
+			"mysql": {
+				"columnName": "dateOfSupply",
+				"dataType": "date",
+				"dataLength": null,
+				"dataPrecision": null,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		},
+		"placeofsupply": {
+			"type": "string",
+			"required": false,
+			"length": 500,
+			"precision": null,
+			"scale": null,
+			"mysql": {
+				"columnName": "placeOfSupply",
+				"dataType": "varhcar",
+				"dataLength": 500,
+				"dataPrecision": null,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		},
 		"createdon": {
 			"type": "date",
 			"required": true,
@@ -206,6 +236,14 @@
         "billbook": {
 			"type": "belongsTo",
 			"model": "Billbook",
+			"foreignKey": "",
+			"options": {
+			  "nestRemoting": true
+			}
+		  },
+		"transport": {
+			"type": "belongsTo",
+			"model": "Transport",
 			"foreignKey": "",
 			"options": {
 			  "nestRemoting": true

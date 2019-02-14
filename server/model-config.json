@@ -120,6 +120,10 @@
 		"dataSource": "db1",
 		"public": true
 	},
+	"Transport": {
+		"dataSource": "db1",
+		"public": true
+	},
 	"Type": {
 		"dataSource": "db1",
 		"public": true
