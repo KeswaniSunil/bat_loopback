@@ -11,14 +11,13 @@ module.exports = function(Subtypes) {
   });    
    Subtypes.subTypeNames = async function(names,typeId){
     let r_p=new Promise((resolve, reject)=>{
-        console.log(typeId+" "+names)
         if(typeId != null)
         {
         Subtypes.find({fields:['id','name'],where:{isenabled:1,typeId:typeId}},(err, Subtypes)=>{
+            let values=new Array()
+            var j=0
             if(Subtypes.length > 0 )
             {
-                let values=new Array()
-                var j=0
                 for(var i=0;i<Subtypes.length;i++)
                 {
                     if(Subtypes[i].name.toLowerCase().search(names.toLowerCase()) > -1)
@@ -29,14 +28,11 @@ module.exports = function(Subtypes) {
                         j++
                     }
                 }
-                values[j]=new Object()
-                values[j].id=1
-                values[j].name="Add New"
-                resolve(values)
             }
-            else {
-                resolve("false")
-            }
+            values[j]=new Object()
+            values[j].id=1
+            values[j].name="Add New"
+            resolve(values)
         })
         }
         else resolve([{id:0,name:"Please Select Type First"}])

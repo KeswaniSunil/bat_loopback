@@ -33,6 +33,36 @@
 				"nullable": "N"
 			}
 		},
+		"receivedamount": {
+			"type": "number",
+			"required": true,
+			"length": null,
+			"precision": 22,
+			"scale": null,
+			"mysql": {
+				"columnName": "receivedAmount",
+				"dataType": "double",
+				"dataLength": null,
+				"dataPrecision": 22,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		},
+		"pendingamount": {
+			"type": "number",
+			"required": true,
+			"length": null,
+			"precision": 22,
+			"scale": null,
+			"mysql": {
+				"columnName": "pendingAmount",
+				"dataType": "double",
+				"dataLength": null,
+				"dataPrecision": 22,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		},
 		"discount": {
 			"type": "string",
 			"required": true,
@@ -150,6 +180,21 @@
 				"dataLength": null,
 				"dataPrecision": null,
 				"dataScale": null,
+				"nullable": "N"
+			}
+		},
+		"isenabled": {
+			"type": "number",
+			"required": false,
+			"length": null,
+			"precision": 3,
+			"scale": 0,
+			"mysql": {
+				"columnName": "isEnabled",
+				"dataType": "tinyint",
+				"dataLength": null,
+				"dataPrecision": 3,
+				"dataScale": 0,
 				"nullable": "N"
 			}
 		},
