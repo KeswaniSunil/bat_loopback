@@ -9,4 +9,52 @@ module.exports = function(Supplier) {
     }
     cb();
   });
+  Supplier.supplierNames = async function(names){
+    let r_p=new Promise((resolve, reject)=>{
+        Supplier.find({fields:['id','name'],where:{isenabled:1}},(err, Suppliers)=>{
+            if(Suppliers.length > 0)
+            {
+                let values=new Array()
+                var j=0
+                if(/^[A-Za-z0-9- ]*$/.test(names) == true)
+                {
+                    for(var i=0;i<Suppliers.length;i++)
+                    {
+                        if(Suppliers[i].name.toLowerCase().search(names.toLowerCase()) > -1)
+                        {
+                            values[j]=new Object()
+                            values[j].id=Suppliers[i].id
+                            values[j].name=Suppliers[i].name
+                            j++
+                        }
+                    }
+                }
+
+                values[j]=new Object()
+                values[j].id=0
+                values[j].name="<center><div class='col-12 font-14 fa fa-plus' style='border:1px solid #9b9c9c;padding:5px;color:gray'>Add New</div></center>"
+                resolve(values)
+            }
+            else {
+                resolve("false")
+            }
+        })
+      })
+      var values=await r_p
+      return values
+  }
+  Supplier.remoteMethod("supplierNames",{
+    accepts:{
+        arg:"names",
+        type:"string"
+    },
+    returns:{
+        arg:"values",
+        type:"Array"
+    },
+    "http":{
+        "verb":"get",
+        "path":"/supplierNames"
+    }
+  })
 };

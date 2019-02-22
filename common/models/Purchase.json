@@ -34,16 +34,16 @@
 			}
 		},
 		"discount": {
-			"type": "number",
+			"type": "string",
 			"required": true,
-			"length": null,
-			"precision": 22,
+			"length": 15,
+			"precision": null,
 			"scale": null,
 			"mysql": {
 				"columnName": "discount",
-				"dataType": "double",
-				"dataLength": null,
-				"dataPrecision": 22,
+				"dataType": "varchar",
+				"dataLength": 15,
+				"dataPrecision": null,
 				"dataScale": null,
 				"nullable": "N"
 			}
@@ -59,6 +59,21 @@
 				"dataType": "double",
 				"dataLength": null,
 				"dataPrecision": 22,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		},
+		"roundoff": {
+			"type": "string",
+			"required": true,
+			"length": 10,
+			"precision": null,
+			"scale": null,
+			"mysql": {
+				"columnName": "roundoff",
+				"dataType": "varchar",
+				"dataLength": 10,
+				"dataPrecision": null,
 				"dataScale": null,
 				"nullable": "N"
 			}
@@ -93,21 +108,6 @@
 				"nullable": "N"
 			}
 		},
-		"slipno": {
-			"type": "number",
-			"required": true,
-			"length": null,
-			"precision": 10,
-			"scale": 0,
-			"mysql": {
-				"columnName": "slipNo",
-				"dataType": "int",
-				"dataLength": null,
-				"dataPrecision": 10,
-				"dataScale": 0,
-				"nullable": "N"
-			}
-		},
 		"totalamount": {
 			"type": "number",
 			"required": true,
@@ -116,6 +116,36 @@
 			"scale": null,
 			"mysql": {
 				"columnName": "totalAmount",
+				"dataType": "double",
+				"dataLength": null,
+				"dataPrecision": 22,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		},
+		"paidamount": {
+			"type": "number",
+			"required": true,
+			"length": null,
+			"precision": 22,
+			"scale": null,
+			"mysql": {
+				"columnName": "paidAmount",
+				"dataType": "double",
+				"dataLength": null,
+				"dataPrecision": 22,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		},
+		"pendingamount": {
+			"type": "number",
+			"required": true,
+			"length": null,
+			"precision": 22,
+			"scale": null,
+			"mysql": {
+				"columnName": "pendingAmount",
 				"dataType": "double",
 				"dataLength": null,
 				"dataPrecision": 22,
@@ -150,6 +180,36 @@
 				"dataLength": null,
 				"dataPrecision": null,
 				"dataScale": null,
+				"nullable": "N"
+			}
+		},
+		"duedate": {
+			"type": "date",
+			"required": false,
+			"length": null,
+			"precision": null,
+			"scale": null,
+			"mysql": {
+				"columnName": "dueDate",
+				"dataType": "date",
+				"dataLength": null,
+				"dataPrecision": null,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		},
+		"isenabled": {
+			"type": "number",
+			"required": false,
+			"length": null,
+			"precision": 3,
+			"scale": 0,
+			"mysql": {
+				"columnName": "isEnabled",
+				"dataType": "tinyint",
+				"dataLength": null,
+				"dataPrecision": 3,
+				"dataScale": 0,
 				"nullable": "N"
 			}
 		},

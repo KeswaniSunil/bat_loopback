@@ -18,29 +18,29 @@
 			},
 			"updateOnly": false
 		},
-		"pendingamount": {
-			"type": "number",
+		"paymentmethod": {
+			"type": "string",
 			"required": true,
-			"length": null,
-			"precision": 22,
+			"length": 30,
+			"precision": null,
 			"scale": null,
 			"mysql": {
-				"columnName": "pendingAmount",
-				"dataType": "double",
-				"dataLength": null,
-				"dataPrecision": 22,
+				"columnName": "paymentMethod",
+				"dataType": "varchar",
+				"dataLength": 30,
+				"dataPrecision": null,
 				"dataScale": null,
 				"nullable": "N"
 			}
 		},
-		"recievedamount": {
+		"paidamount": {
 			"type": "number",
 			"required": true,
 			"length": null,
 			"precision": 22,
 			"scale": null,
 			"mysql": {
-				"columnName": "recievedAmount",
+				"columnName": "paidAmount",
 				"dataType": "double",
 				"dataLength": null,
 				"dataPrecision": 22,
@@ -63,17 +63,30 @@
 				"nullable": "N"
 			}
 		},
-		"chequeno": {
+		"notes": {
 			"type": "string",
-			"required": true,
-			"length": 50,
+			"required": false,
+			"length": 4294967295,
 			"precision": null,
 			"scale": null,
 			"mysql": {
-				"columnName": "chequeNo",
-				"dataType": "varchar",
-				"dataLength": 50,
+				"columnName": "Notes",
+				"dataType": "longtext",
+				"dataLength": 4294967295,
 				"dataPrecision": null,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		},
+        "series": {
+			"type": "number",
+			"required": true,
+			"precision": 11,
+			"scale": null,
+			"mysql": {
+				"columnName": "series",
+				"dataType": "integer",
+				"dataPrecision": 11,
 				"dataScale": null,
 				"nullable": "N"
 			}
@@ -123,14 +136,6 @@
 		"purchase": {
 			"type": "belongsTo",
 			"model": "Purchase",
-			"foreignKey": "",
-			"options": {
-			  "nestRemoting": true
-			}
-		  },
-		  "payment": {
-			"type": "belongsTo",
-			"model": "Payment",
 			"foreignKey": "",
 			"options": {
 			  "nestRemoting": true

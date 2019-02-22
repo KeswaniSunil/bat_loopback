@@ -93,6 +93,21 @@
 				"nullable": "N"
 			}
 		},
+		"roundoff": {
+			"type": "string",
+			"required": true,
+			"length": 10,
+			"precision": null,
+			"scale": null,
+			"mysql": {
+				"columnName": "roundoff",
+				"dataType": "varchar",
+				"dataLength": 10,
+				"dataPrecision": null,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		},
 		"taxamount": {
 			"type": "number",
 			"required": true,
