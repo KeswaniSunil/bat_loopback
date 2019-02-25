@@ -33,9 +33,24 @@
 				"nullable": "N"
 			}
 		},
+		"isenabled": {
+			"type": "number",
+			"required": false,
+			"length": null,
+			"precision": 3,
+			"scale": 0,
+			"mysql": {
+				"columnName": "isEnabled",
+				"dataType": "tinyint",
+				"dataLength": null,
+				"dataPrecision": 3,
+				"dataScale": 0,
+				"nullable": "N"
+			}
+		},
 		"usedstock": {
 			"type": "number",
-			"required": true,
+			"required": false,
 			"length": null,
 			"precision": 22,
 			"scale": null,
@@ -44,6 +59,36 @@
 				"dataType": "double",
 				"dataLength": null,
 				"dataPrecision": 22,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		},
+		"createdon": {
+			"type": "date",
+			"required": true,
+			"length": null,
+			"precision": null,
+			"scale": null,
+			"mysql": {
+				"columnName": "createdOn",
+				"dataType": "timestamp",
+				"dataLength": null,
+				"dataPrecision": null,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		},
+		"modifiedon": {
+			"type": "date",
+			"required": true,
+			"length": null,
+			"precision": null,
+			"scale": null,
+			"mysql": {
+				"columnName": "modifiedOn",
+				"dataType": "timestamp",
+				"dataLength": null,
+				"dataPrecision": null,
 				"dataScale": null,
 				"nullable": "N"
 			}
@@ -63,6 +108,22 @@
 		"item": {
 			"type": "belongsTo",
 			"model": "Items",
+			"foreignKey": "",
+			"options": {
+			  "nestRemoting": true
+			}
+		  },
+		  "createdBy": {
+			"type": "belongsTo",
+			"model": "User",
+			"foreignKey": "",
+			"options": {
+			  "nestRemoting": true
+			}
+		  },
+		  "modifiedBy": {
+			"type": "belongsTo",
+			"model": "User",
 			"foreignKey": "",
 			"options": {
 			  "nestRemoting": true

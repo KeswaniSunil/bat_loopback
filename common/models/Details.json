@@ -36,13 +36,13 @@
 		"mobile": {
 			"type": "string",
 			"required": true,
-			"length": 10,
+			"length": 4294967295,
 			"precision": null,
 			"scale": null,
 			"mysql": {
 				"columnName": "mobile",
-				"dataType": "varchar",
-				"dataLength": 10,
+				"dataType": "longtext",
+				"dataLength": 4294967295,
 				"dataPrecision": null,
 				"dataScale": null,
 				"nullable": "N"
@@ -50,7 +50,7 @@
 		},
 		"address": {
 			"type": "string",
-			"required": true,
+			"required": false,
 			"length": 4294967295,
 			"precision": null,
 			"scale": null,
@@ -65,7 +65,7 @@
 		},
 		"state": {
 			"type": "string",
-			"required": true,
+			"required": false,
 			"length": 30,
 			"precision": null,
 			"scale": null,
@@ -80,7 +80,7 @@
 		},
 		"city": {
 			"type": "string",
-			"required": true,
+			"required": false,
 			"length": 30,
 			"precision": null,
 			"scale": null,
@@ -95,7 +95,7 @@
 		},
 		"statecode": {
 			"type": "number",
-			"required": true,
+			"required": false,
 			"length": null,
 			"precision": 10,
 			"scale": 0,
@@ -110,7 +110,7 @@
 		},
 		"gstin": {
 			"type": "string",
-			"required": true,
+			"required": false,
 			"length": 30,
 			"precision": null,
 			"scale": null,
@@ -125,7 +125,7 @@
 		},
 		"bankaccountno": {
 			"type": "string",
-			"required": true,
+			"required": false,
 			"length": 30,
 			"precision": null,
 			"scale": null,
@@ -140,7 +140,7 @@
 		},
 		"bankaccountname": {
 			"type": "string",
-			"required": true,
+			"required": false,
 			"length": 4294967295,
 			"precision": null,
 			"scale": null,
@@ -155,7 +155,7 @@
 		},
 		"bankname": {
 			"type": "string",
-			"required": true,
+			"required": false,
 			"length": 4294967295,
 			"precision": null,
 			"scale": null,
@@ -170,7 +170,7 @@
 		},
 		"bankifsc": {
 			"type": "string",
-			"required": true,
+			"required": false,
 			"length": 20,
 			"precision": null,
 			"scale": null,
@@ -185,7 +185,7 @@
 		},
 		"termsandconditions": {
 			"type": "string",
-			"required": true,
+			"required": false,
 			"length": 4294967295,
 			"precision": null,
 			"scale": null,
@@ -200,12 +200,27 @@
 		},
 		"logo": {
 			"type": "string",
-			"required": true,
+			"required": false,
 			"length": 4294967295,
 			"precision": null,
 			"scale": null,
 			"mysql": {
 				"columnName": "logo",
+				"dataType": "longtext",
+				"dataLength": 4294967295,
+				"dataPrecision": null,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		},
+		"billuppertext": {
+			"type": "string",
+			"required": false,
+			"length": 4294967295,
+			"precision": null,
+			"scale": null,
+			"mysql": {
+				"columnName": "billUpperText",
 				"dataType": "longtext",
 				"dataLength": 4294967295,
 				"dataPrecision": null,

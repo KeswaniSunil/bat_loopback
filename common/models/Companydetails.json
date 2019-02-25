@@ -36,13 +36,13 @@
 		"mobile": {
 			"type": "string",
 			"required": true,
-			"length": 10,
+			"length": 4294967295,
 			"precision": null,
 			"scale": null,
 			"mysql": {
 				"columnName": "mobile",
-				"dataType": "varchar",
-				"dataLength": 10,
+				"dataType": "longtext",
+				"dataLength": 4294967295,
 				"dataPrecision": null,
 				"dataScale": null,
 				"nullable": "N"
@@ -50,7 +50,7 @@
 		},
 		"address": {
 			"type": "string",
-			"required": true,
+			"required": false,
 			"length": 4294967295,
 			"precision": null,
 			"scale": null,
@@ -65,7 +65,7 @@
 		},
 		"state": {
 			"type": "string",
-			"required": true,
+			"required": false,
 			"length": 50,
 			"precision": null,
 			"scale": null,
@@ -80,7 +80,7 @@
 		},
 		"city": {
 			"type": "string",
-			"required": true,
+			"required": false,
 			"length": 50,
 			"precision": null,
 			"scale": null,
@@ -95,7 +95,7 @@
 		},
 		"pincode": {
 			"type": "number",
-			"required": true,
+			"required": false,
 			"length": null,
 			"precision": 10,
 			"scale": 0,
@@ -110,7 +110,7 @@
 		},
 		"statecode": {
 			"type": "number",
-			"required": true,
+			"required": false,
 			"length": null,
 			"precision": 10,
 			"scale": 0,
@@ -125,7 +125,7 @@
 		},
 		"logo": {
 			"type": "string",
-			"required": true,
+			"required": false,
 			"length": 200,
 			"precision": null,
 			"scale": null,
