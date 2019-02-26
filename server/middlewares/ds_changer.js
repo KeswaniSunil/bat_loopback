@@ -8,11 +8,21 @@ module.exports = function(options) {
         next();
      }
      else{
-     Config.find({fields:['dbName'],include:['Companydetails'],where:{name:d}}, function(err, configs){
-        if(configs.length > 0)
+     Config.find({include:['company']}, function(err, configs){
+        var dbName=new Array();
+        for(let i=0;i<configs.length;i++)
+        {
+            var p=configs[i].toJSON();
+            if(p.company.name == d)
+            {
+                dbName[0]=configs[i].dbName
+                break;
+            }
+        }
+        if(dbName.length > 0)
         {
             var models = app.models();
-            var dtsrc=configs[0].dbName
+            var dtsrc=dbName[0]
                 //var dataSourceName = Model.getDataSource().settings.name;
                 //console.log("////////////////////////////////////////////////00000000000")
                 //console.log(app.dataSources[dtsrc])
