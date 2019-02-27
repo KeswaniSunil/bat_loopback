@@ -25,13 +25,32 @@ module.exports = function(Orders) {
                     {
                         var lastbillno = order[0].billno
                         billNo.no = parseInt(lastbillno)+1
-                    } else {
-                        series += 1 
-                        billNo.no = series 
+                        var BillBook = order[0].toJSON().billbook
+                        billNo.prefix = BillBook.prefix
+                        resolve(billNo)
                     }
-                    let BillBook = order[0].toJSON().billbook
-                    billNo.prefix = BillBook.prefix
-                    resolve(billNo)
+                    else {
+                        let app = require("../../server/server")
+                        let BillBook = app.models.Billbook
+                        BillBook.find({where:{id:billBookId}},(err,billBook)=>{
+                            if(err)
+                            {
+                                reject(err)
+                            }
+                            else {
+                                if(billBook.length > 0)
+                                {
+                                    var billNo = {
+                                        no:0,
+                                        prefix:""
+                                    }
+                                    billNo.no = parseInt(billBook[0].series)+1
+                                    billNo.prefix = billBook[0].prefix
+                                    resolve(billNo)
+                                }
+                            }
+                        })
+                    }
                 }
             })
         })

@@ -62,6 +62,51 @@
 				"dataScale": null,
 				"nullable": "N"
 			}
+		},
+		"isenabled": {
+			"type": "number",
+			"required": true,
+			"length": null,
+			"precision": 3,
+			"scale": 0,
+			"mysql": {
+				"columnName": "isEnabled",
+				"dataType": "tinyint",
+				"dataLength": null,
+				"dataPrecision": 3,
+				"dataScale": 0,
+				"nullable": "N"
+			}
+		},
+		"createdon": {
+			"type": "date",
+			"required": true,
+			"length": null,
+			"precision": null,
+			"scale": null,
+			"mysql": {
+				"columnName": "createdOn",
+				"dataType": "timestamp",
+				"dataLength": null,
+				"dataPrecision": null,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		},
+		"modifiedon": {
+			"type": "date",
+			"required": true,
+			"length": null,
+			"precision": null,
+			"scale": null,
+			"mysql": {
+				"columnName": "modifiedOn",
+				"dataType": "timestamp",
+				"dataLength": null,
+				"dataPrecision": null,
+				"dataScale": null,
+				"nullable": "N"
+			}
 		}
 	},
 	"settings": {
@@ -73,5 +118,23 @@
 			"schema": "jdm_main",
 			"table": "config"
 		}
-	}
+	},
+	"relations": {
+        "createdBy": {
+          "type": "belongsTo",
+          "model": "User",
+          "foreignKey": "",
+          "options": {
+            "nestRemoting": true
+          }
+        },
+        "modifiedBy": {
+          "type": "belongsTo",
+          "model": "User",
+          "foreignKey": "",
+          "options": {
+            "nestRemoting": true
+          }
+        }
+    }
 }
