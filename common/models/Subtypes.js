@@ -13,27 +13,37 @@ module.exports = function(Subtypes) {
     let r_p=new Promise((resolve, reject)=>{
         if(typeId != null)
         {
-        Subtypes.find({fields:['id','name'],where:{isenabled:1,typeId:typeId}},(err, Subtypes)=>{
-            let values=new Array()
-            var j=0
-            if(Subtypes.length > 0 )
-            {
-                for(var i=0;i<Subtypes.length;i++)
+            Subtypes.find({fields:['id','name'],where:{isenabled:1,typeId:typeId}},(err, Subtypes)=>{
+                let values=new Array()
+                let j=0
+                if(Subtypes.length > 0 )
                 {
-                    if(Subtypes[i].name.toLowerCase().search(names.toLowerCase()) > -1)
+                    if(/^[A-Za-z0-9- ]*$/.test(names) == true)
                     {
-                        values[j]=new Object()
-                        values[j].id=Subtypes[i].id
-                        values[j].name=Subtypes[i].name
-                        j++
+                        for(var i=0;i<Subtypes.length;i++)
+                        {
+                            if(Subtypes[i].name.toLowerCase().search(names.toLowerCase()) > -1)
+                            {
+                                values[j]=new Object()
+                                values[j].id=Subtypes[i].id
+                                values[j].name=Subtypes[i].name
+                                j++
+                            }
+                        }
                     }
+
+                    values[j]=new Object()
+                    values[j].id=0
+                    values[j].name="<center><div class='col-12 font-14 fa fa-plus' style='border:1px solid #9b9c9c;padding:5px;color:gray'>Add New</div></center>"
+                    resolve(values)
                 }
-            }
-            values[j]=new Object()
-            values[j].id=1
-            values[j].name="Add New"
-            resolve(values)
-        })
+                else {
+                    values[j]=new Object()
+                    values[j].id=0
+                    values[j].name="<center><div class='col-12 font-14 fa fa-plus' style='border:1px solid #9b9c9c;padding:5px;color:gray'>Add New</div></center>"
+                    resolve(values)
+                }
+            })
         }
         else resolve([{id:0,name:"Please Select Type First"}])
       })

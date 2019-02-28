@@ -12,10 +12,10 @@ module.exports = function(Customer) {
   Customer.customerNames = async function(names){
     let r_p=new Promise((resolve, reject)=>{
         Customer.find({fields:['id','name'],where:{isenabled:1}},(err, Customers)=>{
+            let values=new Array()
+            let j=0
             if(Customers.length > 0)
             {
-                let values=new Array()
-                var j=0
                 if(/^[A-Za-z0-9- ]*$/.test(names) == true)
                 {
                     for(var i=0;i<Customers.length;i++)
@@ -36,7 +36,10 @@ module.exports = function(Customer) {
                 resolve(values)
             }
             else {
-                resolve("false")
+                values[j]=new Object()
+                values[j].id=0
+                values[j].name="<center><div class='col-12 font-14 fa fa-plus' style='border:1px solid #9b9c9c;padding:5px;color:gray'>Add New</div></center>"
+                resolve(values)
             }
         })
       })

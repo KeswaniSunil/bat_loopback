@@ -12,24 +12,33 @@ module.exports = function(Unit) {
    Unit.unitNames = async function(names){
     let r_p=new Promise((resolve, reject)=>{
         Unit.find({fields:['id','title'],where:{isenabled:1}},(err, Units)=>{
+            let values=new Array()
+            let j=0
             if(Units.length > 0)
             {
-                let values=new Array()
-                var j=0
-                for(var i=0;i<Units.length;i++)
+                if(/^[A-Za-z0-9- ]*$/.test(names) == true)
                 {
-                    if(Units[i].title.toLowerCase().search(names.toLowerCase()) > -1)
+                    for(var i=0;i<Units.length;i++)
                     {
-                        values[j]=new Object()
-                        values[j].id=Units[i].id
-                        values[j].name=Units[i].title
-                        j++
+                        if(Units[i].title.toLowerCase().search(names.toLowerCase()) > -1)
+                        {
+                            values[j]=new Object()
+                            values[j].id=Units[i].id
+                            values[j].name=Units[i].title
+                            j++
+                        }
                     }
                 }
+                values[j]=new Object()
+                values[j].id=0
+                values[j].name="<center><div class='col-12 font-14 fa fa-plus' style='border:1px solid #9b9c9c;padding:5px;color:gray'>Add New</div></center>"
                 resolve(values)
             }
             else {
-                resolve("false")
+                values[j]=new Object()
+                values[j].id=0
+                values[j].name="<center><div class='col-12 font-14 fa fa-plus' style='border:1px solid #9b9c9c;padding:5px;color:gray'>Add New</div></center>"
+                resolve(values)
             }
         })
       })

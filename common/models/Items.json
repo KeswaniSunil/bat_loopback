@@ -78,6 +78,21 @@
 				"nullable": "N"
 			}
 		},
+		"usedstock": {
+			"type": "number",
+			"required": false,
+			"length": null,
+			"precision": 22,
+			"scale": null,
+			"mysql": {
+				"columnName": "usedStock",
+				"dataType": "double",
+				"dataLength": null,
+				"dataPrecision": 22,
+				"dataScale": null,
+				"nullable": "N"
+			}
+		},
 		"price": {
 			"type": "number",
 			"required": true,
@@ -95,7 +110,7 @@
 		},
 		"hsncode": {
 			"type": "string",
-			"required": true,
+			"required": false,
 			"length": 50,
 			"precision": null,
 			"scale": null,
@@ -110,7 +125,7 @@
 		},
 		"barcode": {
 			"type": "string",
-			"required": true,
+			"required": false,
 			"length": 120,
 			"precision": null,
 			"scale": null,

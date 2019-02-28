@@ -50,7 +50,7 @@
 		},
 		"email": {
 			"type": "string",
-			"required": true,
+			"required": false,
 			"length": 200,
 			"precision": null,
 			"scale": null,
@@ -65,7 +65,7 @@
 		},
 		"gstin": {
 			"type": "string",
-			"required": true,
+			"required": false,
 			"length": 50,
 			"precision": null,
 			"scale": null,
@@ -80,7 +80,7 @@
 		},
 		"street": {
 			"type": "string",
-			"required": true,
+			"required": false,
 			"length": 100,
 			"precision": null,
 			"scale": null,
@@ -95,7 +95,7 @@
 		},
 		"area": {
 			"type": "string",
-			"required": true,
+			"required": false,
 			"length": 100,
 			"precision": null,
 			"scale": null,
@@ -110,7 +110,7 @@
 		},
 		"city": {
 			"type": "string",
-			"required": true,
+			"required": false,
 			"length": 100,
 			"precision": null,
 			"scale": null,
@@ -125,7 +125,7 @@
 		},
 		"state": {
 			"type": "string",
-			"required": true,
+			"required": false,
 			"length": 100,
 			"precision": null,
 			"scale": null,
@@ -140,7 +140,7 @@
 		},
 		"pincode": {
 			"type": "string",
-			"required": true,
+			"required": false,
 			"length": 6,
 			"precision": null,
 			"scale": null,
@@ -155,7 +155,7 @@
 		},
 		"statecode": {
 			"type": "number",
-			"required": true,
+			"required": false,
 			"length": null,
 			"precision": 10,
 			"scale": 0,
@@ -170,7 +170,7 @@
 		},
 		"isenabled": {
 			"type": "number",
-			"required": true,
+			"required": false,
 			"length": null,
 			"precision": 3,
 			"scale": 0,
