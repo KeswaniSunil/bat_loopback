@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 12, 2019 at 06:34 AM
+-- Generation Time: Feb 28, 2019 at 01:08 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -59,29 +59,21 @@ CREATE TABLE IF NOT EXISTS `acl` (
 CREATE TABLE IF NOT EXISTS `companydetails` (
   `id` varchar(35) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `mobile` varchar(10) NOT NULL,
-  `address` longtext NOT NULL,
-  `state` varchar(50) NOT NULL,
-  `city` varchar(50) NOT NULL,
-  `stateCode` int(11) NOT NULL,
-  `logo` varchar(200) NOT NULL
+  `mobile` longtext NOT NULL,
+  `address` longtext,
+  `state` varchar(50) DEFAULT NULL,
+  `city` varchar(50) DEFAULT NULL,
+  `pinCode` int(11) DEFAULT NULL,
+  `stateCode` int(11) DEFAULT NULL,
+  `logo` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `companydetails`
 --
 
-INSERT INTO `companydetails` (`id`, `name`, `mobile`, `address`, `state`, `city`, `stateCode`, `logo`) VALUES
-('754c7c5c-2523-11e9-a707-588a5a24e72', 'jay', '', '', '', '', 0, '');
-
---
--- Triggers `companydetails`
---
-DELIMITER $$
-CREATE TRIGGER `companydetails.uuid` BEFORE INSERT ON `companydetails`
- FOR EACH ROW SET new.id = uuid()
-$$
-DELIMITER ;
+INSERT INTO `companydetails` (`id`, `name`, `mobile`, `address`, `state`, `city`, `pinCode`, `stateCode`, `logo`) VALUES
+('754c7c5c-2523-11e9-a707-588a5a24e72', 'jay', '1234567890', NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
