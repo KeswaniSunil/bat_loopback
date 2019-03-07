@@ -1,283 +1,299 @@
 {
-	"name": "Purchase",
-	"properties": {
-		"id": {
-			"type": "string",
-			"required": false,
-			"length": 35,
-			"precision": null,
-			"scale": null,
-			"id": 1,
-			"mysql": {
-				"columnName": "id",
-				"dataType": "varchar",
-				"dataLength": 35,
-				"dataPrecision": null,
-				"dataScale": null,
-				"nullable": "N"
-			},
-			"updateOnly": false
-		},
-		"itemtotal": {
-			"type": "number",
-			"required": true,
-			"length": null,
-			"precision": 22,
-			"scale": null,
-			"mysql": {
-				"columnName": "itemTotal",
-				"dataType": "double",
-				"dataLength": null,
-				"dataPrecision": 22,
-				"dataScale": null,
-				"nullable": "N"
-			}
-		},
-		"discount": {
-			"type": "string",
-			"required": true,
-			"length": 15,
-			"precision": null,
-			"scale": null,
-			"mysql": {
-				"columnName": "discount",
-				"dataType": "varchar",
-				"dataLength": 15,
-				"dataPrecision": null,
-				"dataScale": null,
-				"nullable": "N"
-			}
-		},
-		"charges": {
-			"type": "number",
-			"required": true,
-			"length": null,
-			"precision": 22,
-			"scale": null,
-			"mysql": {
-				"columnName": "charges",
-				"dataType": "double",
-				"dataLength": null,
-				"dataPrecision": 22,
-				"dataScale": null,
-				"nullable": "N"
-			}
-		},
-		"roundoff": {
-			"type": "string",
-			"required": true,
-			"length": 10,
-			"precision": null,
-			"scale": null,
-			"mysql": {
-				"columnName": "roundoff",
-				"dataType": "varchar",
-				"dataLength": 10,
-				"dataPrecision": null,
-				"dataScale": null,
-				"nullable": "N"
-			}
-		},
-		"taxamount": {
-			"type": "number",
-			"required": true,
-			"length": null,
-			"precision": 22,
-			"scale": null,
-			"mysql": {
-				"columnName": "taxAmount",
-				"dataType": "double",
-				"dataLength": null,
-				"dataPrecision": 22,
-				"dataScale": null,
-				"nullable": "N"
-			}
-		},
-		"billno": {
-			"type": "number",
-			"required": true,
-			"length": null,
-			"precision": 22,
-			"scale": null,
-			"mysql": {
-				"columnName": "billNo",
-				"dataType": "double",
-				"dataLength": null,
-				"dataPrecision": 22,
-				"dataScale": null,
-				"nullable": "N"
-			}
-		},
-		"totalamount": {
-			"type": "number",
-			"required": true,
-			"length": null,
-			"precision": 22,
-			"scale": null,
-			"mysql": {
-				"columnName": "totalAmount",
-				"dataType": "double",
-				"dataLength": null,
-				"dataPrecision": 22,
-				"dataScale": null,
-				"nullable": "N"
-			}
-		},
-		"paidamount": {
-			"type": "number",
-			"required": true,
-			"length": null,
-			"precision": 22,
-			"scale": null,
-			"mysql": {
-				"columnName": "paidAmount",
-				"dataType": "double",
-				"dataLength": null,
-				"dataPrecision": 22,
-				"dataScale": null,
-				"nullable": "N"
-			}
-		},
-		"pendingamount": {
-			"type": "number",
-			"required": true,
-			"length": null,
-			"precision": 22,
-			"scale": null,
-			"mysql": {
-				"columnName": "pendingAmount",
-				"dataType": "double",
-				"dataLength": null,
-				"dataPrecision": 22,
-				"dataScale": null,
-				"nullable": "N"
-			}
-		},
-		"gstin": {
-			"type": "string",
-			"required": true,
-			"length": 50,
-			"precision": null,
-			"scale": null,
-			"mysql": {
-				"columnName": "gstin",
-				"dataType": "varchar",
-				"dataLength": 50,
-				"dataPrecision": null,
-				"dataScale": null,
-				"nullable": "N"
-			}
-		},
-		"billdate": {
-			"type": "date",
-			"required": true,
-			"length": null,
-			"precision": null,
-			"scale": null,
-			"mysql": {
-				"columnName": "billDate",
-				"dataType": "datetime",
-				"dataLength": null,
-				"dataPrecision": null,
-				"dataScale": null,
-				"nullable": "N"
-			}
-		},
-		"duedate": {
-			"type": "date",
-			"required": false,
-			"length": null,
-			"precision": null,
-			"scale": null,
-			"mysql": {
-				"columnName": "dueDate",
-				"dataType": "date",
-				"dataLength": null,
-				"dataPrecision": null,
-				"dataScale": null,
-				"nullable": "N"
-			}
-		},
-		"isenabled": {
-			"type": "number",
-			"required": false,
-			"length": null,
-			"precision": 3,
-			"scale": 0,
-			"mysql": {
-				"columnName": "isEnabled",
-				"dataType": "tinyint",
-				"dataLength": null,
-				"dataPrecision": 3,
-				"dataScale": 0,
-				"nullable": "N"
-			}
-		},
-		"createdon": {
-			"type": "date",
-			"required": true,
-			"length": null,
-			"precision": null,
-			"scale": null,
-			"mysql": {
-				"columnName": "createdOn",
-				"dataType": "timestamp",
-				"dataLength": null,
-				"dataPrecision": null,
-				"dataScale": null,
-				"nullable": "N"
-			}
-		},
-		"modifiedon": {
-			"type": "date",
-			"required": true,
-			"length": null,
-			"precision": null,
-			"scale": null,
-			"mysql": {
-				"columnName": "modifiedOn",
-				"dataType": "timestamp",
-				"dataLength": null,
-				"dataPrecision": null,
-				"dataScale": null,
-				"nullable": "N"
-			}
-		}
-	},
-	"settings": {
-		"strict": false,
-		"forceId": false,
-		"replaceOnPUT": true,
-		"idInjection": false,
-		"mysql": {
-			"schema": "db1",
-			"table": "purchase"
-		}
-	},
-	"relations": {
-		"supplier": {
-			"type": "belongsTo",
-			"model": "Supplier",
-			"foreignKey": "",
-			"options": {
-			  "nestRemoting": true
-			}
-		  },
-		"createdBy": {
-			"type": "belongsTo",
-			"model": "User",
-			"foreignKey": "",
-			"options": {
-			  "nestRemoting": true
-			}
-		  },
-		  "modifiedBy": {
-			"type": "belongsTo",
-			"model": "User",
-			"foreignKey": "",
-			"options": {
-			  "nestRemoting": true
-			}
-		  }
-	}
+  "name": "Purchase",
+  "settings": {
+    "strict": false,
+    "forceId": false,
+    "replaceOnPUT": true,
+    "idInjection": false,
+    "mysql": {
+      "schema": "db1",
+      "table": "purchase"
+    }
+  },
+  "properties": {
+    "id": {
+      "type": "string",
+      "id": 1,
+      "required": false,
+      "length": 35,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "id",
+        "dataType": "varchar",
+        "dataLength": 35,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      },
+      "updateOnly": false
+    },
+    "itemtotal": {
+      "type": "number",
+      "required": true,
+      "length": null,
+      "precision": 22,
+      "scale": null,
+      "mysql": {
+        "columnName": "itemTotal",
+        "dataType": "double",
+        "dataLength": null,
+        "dataPrecision": 22,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "discount": {
+      "type": "string",
+      "required": true,
+      "length": 15,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "discount",
+        "dataType": "varchar",
+        "dataLength": 15,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "charges": {
+      "type": "number",
+      "required": true,
+      "length": null,
+      "precision": 22,
+      "scale": null,
+      "mysql": {
+        "columnName": "charges",
+        "dataType": "double",
+        "dataLength": null,
+        "dataPrecision": 22,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "roundoff": {
+      "type": "string",
+      "required": true,
+      "length": 10,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "roundoff",
+        "dataType": "varchar",
+        "dataLength": 10,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "taxamount": {
+      "type": "number",
+      "required": true,
+      "length": null,
+      "precision": 22,
+      "scale": null,
+      "mysql": {
+        "columnName": "taxAmount",
+        "dataType": "double",
+        "dataLength": null,
+        "dataPrecision": 22,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "billno": {
+      "type": "number",
+      "required": true,
+      "length": null,
+      "precision": 22,
+      "scale": null,
+      "mysql": {
+        "columnName": "billNo",
+        "dataType": "double",
+        "dataLength": null,
+        "dataPrecision": 22,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "totalamount": {
+      "type": "number",
+      "required": true,
+      "length": null,
+      "precision": 22,
+      "scale": null,
+      "mysql": {
+        "columnName": "totalAmount",
+        "dataType": "double",
+        "dataLength": null,
+        "dataPrecision": 22,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "paidamount": {
+      "type": "number",
+      "required": true,
+      "length": null,
+      "precision": 22,
+      "scale": null,
+      "mysql": {
+        "columnName": "paidAmount",
+        "dataType": "double",
+        "dataLength": null,
+        "dataPrecision": 22,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "pendingamount": {
+      "type": "number",
+      "required": true,
+      "length": null,
+      "precision": 22,
+      "scale": null,
+      "mysql": {
+        "columnName": "pendingAmount",
+        "dataType": "double",
+        "dataLength": null,
+        "dataPrecision": 22,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "gstin": {
+      "type": "string",
+      "required": true,
+      "length": 50,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "gstin",
+        "dataType": "varchar",
+        "dataLength": 50,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "billdate": {
+      "type": "date",
+      "required": true,
+      "length": null,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "billDate",
+        "dataType": "datetime",
+        "dataLength": null,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "duedate": {
+      "type": "date",
+      "required": false,
+      "length": null,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "dueDate",
+        "dataType": "date",
+        "dataLength": null,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "isenabled": {
+      "type": "number",
+      "required": false,
+      "length": null,
+      "precision": 3,
+      "scale": 0,
+      "mysql": {
+        "columnName": "isEnabled",
+        "dataType": "tinyint",
+        "dataLength": null,
+        "dataPrecision": 3,
+        "dataScale": 0,
+        "nullable": "N"
+      }
+    },
+    "createdon": {
+      "type": "date",
+      "required": true,
+      "length": null,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "createdOn",
+        "dataType": "timestamp",
+        "dataLength": null,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "modifiedon": {
+      "type": "date",
+      "required": true,
+      "length": null,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "modifiedOn",
+        "dataType": "timestamp",
+        "dataLength": null,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    }
+  },
+  "validations": [],
+  "relations": {
+    "supplier": {
+      "type": "belongsTo",
+      "model": "Supplier",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "createdBy": {
+      "type": "belongsTo",
+      "model": "User",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "modifiedBy": {
+      "type": "belongsTo",
+      "model": "User",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    }
+  ],
+  "methods": {}
 }

@@ -1,163 +1,179 @@
 {
-	"name": "Itemphotos",
-	"properties": {
-		"id": {
-			"type": "string",
-			"required": false,
-			"length": 35,
-			"precision": null,
-			"scale": null,
-			"id": 1,
-			"mysql": {
-				"columnName": "id",
-				"dataType": "varchar",
-				"dataLength": 35,
-				"dataPrecision": null,
-				"dataScale": null,
-				"nullable": "N"
-			},
-			"updateOnly": false
-		},
-		"name": {
-			"type": "string",
-			"required": true,
-			"length": 50,
-			"precision": null,
-			"scale": null,
-			"mysql": {
-				"columnName": "name",
-				"dataType": "varchar",
-				"dataLength": 50,
-				"dataPrecision": null,
-				"dataScale": null,
-				"nullable": "N"
-			}
-		},
-		"alttext": {
-			"type": "string",
-			"required": true,
-			"length": 50,
-			"precision": null,
-			"scale": null,
-			"mysql": {
-				"columnName": "altText",
-				"dataType": "varchar",
-				"dataLength": 50,
-				"dataPrecision": null,
-				"dataScale": null,
-				"nullable": "N"
-			}
-		},
-		"filedir": {
-			"type": "string",
-			"required": true,
-			"length": 4294967295,
-			"precision": null,
-			"scale": null,
-			"mysql": {
-				"columnName": "fileDir",
-				"dataType": "longtext",
-				"dataLength": 4294967295,
-				"dataPrecision": null,
-				"dataScale": null,
-				"nullable": "N"
-			}
-		},
-		"filename": {
-			"type": "string",
-			"required": true,
-			"length": 120,
-			"precision": null,
-			"scale": null,
-			"mysql": {
-				"columnName": "fileName",
-				"dataType": "varchar",
-				"dataLength": 120,
-				"dataPrecision": null,
-				"dataScale": null,
-				"nullable": "N"
-			}
-		},
-		"link": {
-			"type": "string",
-			"required": true,
-			"length": 4294967295,
-			"precision": null,
-			"scale": null,
-			"mysql": {
-				"columnName": "link",
-				"dataType": "longtext",
-				"dataLength": 4294967295,
-				"dataPrecision": null,
-				"dataScale": null,
-				"nullable": "N"
-			}
-		},
-		"createdon": {
-			"type": "date",
-			"required": true,
-			"length": null,
-			"precision": null,
-			"scale": null,
-			"mysql": {
-				"columnName": "createdOn",
-				"dataType": "timestamp",
-				"dataLength": null,
-				"dataPrecision": null,
-				"dataScale": null,
-				"nullable": "N"
-			}
-		},
-		"modifiedon": {
-			"type": "date",
-			"required": true,
-			"length": null,
-			"precision": null,
-			"scale": null,
-			"mysql": {
-				"columnName": "modifiedOn",
-				"dataType": "timestamp",
-				"dataLength": null,
-				"dataPrecision": null,
-				"dataScale": null,
-				"nullable": "N"
-			}
-		}
-	},
-	"settings": {
-		"strict": false,
-		"forceId": false,
-		"replaceOnPUT": true,
-		"idInjection": false,
-		"mysql": {
-			"schema": "db1",
-			"table": "itemphotos"
-		}
-	},
-	"relations": {
-		"item": {
-			"type": "belongsTo",
-			"model": "Items",
-			"foreignKey": "",
-			"options": {
-			  "nestRemoting": true
-			}
-		  },
-		"createdBy": {
-			"type": "belongsTo",
-			"model": "User",
-			"foreignKey": "",
-			"options": {
-			  "nestRemoting": true
-			}
-		  },
-		  "modifiedBy": {
-			"type": "belongsTo",
-			"model": "User",
-			"foreignKey": "",
-			"options": {
-			  "nestRemoting": true
-			}
-		  }
-	}
+  "name": "Itemphotos",
+  "settings": {
+    "strict": false,
+    "forceId": false,
+    "replaceOnPUT": true,
+    "idInjection": false,
+    "mysql": {
+      "schema": "db1",
+      "table": "itemphotos"
+    }
+  },
+  "properties": {
+    "id": {
+      "type": "string",
+      "id": 1,
+      "required": false,
+      "length": 35,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "id",
+        "dataType": "varchar",
+        "dataLength": 35,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      },
+      "updateOnly": false
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "length": 50,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "name",
+        "dataType": "varchar",
+        "dataLength": 50,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "alttext": {
+      "type": "string",
+      "required": true,
+      "length": 50,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "altText",
+        "dataType": "varchar",
+        "dataLength": 50,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "filedir": {
+      "type": "string",
+      "required": true,
+      "length": 4294967295,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "fileDir",
+        "dataType": "longtext",
+        "dataLength": 4294967295,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "filename": {
+      "type": "string",
+      "required": true,
+      "length": 120,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "fileName",
+        "dataType": "varchar",
+        "dataLength": 120,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "link": {
+      "type": "string",
+      "required": true,
+      "length": 4294967295,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "link",
+        "dataType": "longtext",
+        "dataLength": 4294967295,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "createdon": {
+      "type": "date",
+      "required": true,
+      "length": null,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "createdOn",
+        "dataType": "timestamp",
+        "dataLength": null,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "modifiedon": {
+      "type": "date",
+      "required": true,
+      "length": null,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "modifiedOn",
+        "dataType": "timestamp",
+        "dataLength": null,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    }
+  },
+  "validations": [],
+  "relations": {
+    "item": {
+      "type": "belongsTo",
+      "model": "Items",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "createdBy": {
+      "type": "belongsTo",
+      "model": "User",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "modifiedBy": {
+      "type": "belongsTo",
+      "model": "User",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    }
+  ],
+  "methods": {}
 }

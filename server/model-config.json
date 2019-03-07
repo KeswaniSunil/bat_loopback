@@ -1,139 +1,143 @@
 {
-	"_meta": {
-		"sources": [
-			"loopback/common/models",
-			"loopback/server/models",
-			"../common/models",
-			"./models"
-		],
-		"mixins": [
-			"loopback/common/mixins",
-			"loopback/server/mixins",
-			"../common/mixins",
-			"./mixins"
-		]
-	},
-	"User": {
-		"dataSource": "jdm_main",
-		"public": true
-	},
-	"AccessToken": {
-		"dataSource": "jdm_main",
-		"public": false
-	},
-	"ACL": {
-		"dataSource": "jdm_main",
-		"public": false
-	},
-	"RoleMapping": {
-		"dataSource": "jdm_main",
-		"public": false,
-		"options": {
-			"strictObjectIDCoercion": true
-		}
-	},
-	"Role": {
-		"dataSource": "jdm_main",
-		"public": false
-	},
-	"Config": {
-		"dataSource": "jdm_main",
-		"public": true
-	},
-	"Companydetails": {
-		"dataSource": "jdm_main",
-		"public": true
-	},
-	"Configuration": {
-		"dataSource": "db1",
-		"public": true
-	},
-	"Customer": {
-		"dataSource": "db1",
-		"public": true
-	},
-	"Customeritemprices": {
-		"dataSource": "db1",
-		"public": true
-	},
-	"Customertype": {
-		"dataSource": "db1",
-		"public": true
-	},
-	"Details": {
-		"dataSource": "db1",
-		"public": true
-	},
-	"Document": {
-		"dataSource": "db1",
-		"public": true
-	},
-	"Itemphotos": {
-		"dataSource": "db1",
-		"public": true
-	},
-	"Items": {
-		"dataSource": "db1",
-		"public": true
-	},
-	"Orderitem": {
-		"dataSource": "db1",
-		"public": true
-	},
-	"Orderpayment": {
-		"dataSource": "db1",
-		"public": true
-	},
-	"Orders": {
-		"dataSource": "db1",
-		"public": true
-	},
-	"Payment": {
-		"dataSource": "db1",
-		"public": true
-	},
-	"Purchase": {
-		"dataSource": "db1",
-		"public": true
-	},
-	"Purchaseitem": {
-		"dataSource": "db1",
-		"public": true
-	},
-	"Purchasepayment": {
-		"dataSource": "db1",
-		"public": true
-	},
-	"Stocklog": {
-		"dataSource": "db1",
-		"public": true
-	},
-	"Subtypes": {
-		"dataSource": "db1",
-		"public": true
-	},
-	"Supplier": {
-		"dataSource": "db1",
-		"public": true
-	},
-	"Taxes": {
-		"dataSource": "db1",
-		"public": true
-	},
-	"Transport": {
-		"dataSource": "db1",
-		"public": true
-	},
-	"Type": {
-		"dataSource": "db1",
-		"public": true
-	},
-	"Unit": {
-		"dataSource": "db1",
-		"public": true
-	},
-    "Billbook": {
-		"dataSource": "db1",
-		"public": true
-	}
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "User": {
+    "dataSource": "jdm_main",
+    "public": true
+  },
+  "AccessToken": {
+    "dataSource": "jdm_main",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "jdm_main",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "jdm_main",
+    "public": false,
+    "options": {
+      "strictObjectIDCoercion": true
+    }
+  },
+  "Role": {
+    "dataSource": "jdm_main",
+    "public": true
+  },
+  "Config": {
+    "dataSource": "jdm_main",
+    "public": true
+  },
+  "Companydetails": {
+    "dataSource": "jdm_main",
+    "public": true
+  },
+  "Configuration": {
+    "dataSource": "db1",
+    "public": true
+  },
+  "Customer": {
+    "dataSource": "db1",
+    "public": true
+  },
+  "Customeritemprices": {
+    "dataSource": "db1",
+    "public": true
+  },
+  "Customertype": {
+    "dataSource": "db1",
+    "public": true
+  },
+  "Details": {
+    "dataSource": "db1",
+    "public": true
+  },
+  "Document": {
+    "dataSource": "db1",
+    "public": true
+  },
+  "Itemphotos": {
+    "dataSource": "db1",
+    "public": true
+  },
+  "Items": {
+    "dataSource": "db1",
+    "public": true
+  },
+  "Orderitem": {
+    "dataSource": "db1",
+    "public": true
+  },
+  "Orderpayment": {
+    "dataSource": "db1",
+    "public": true
+  },
+  "Orders": {
+    "dataSource": "db1",
+    "public": true
+  },
+  "Payment": {
+    "dataSource": "db1",
+    "public": true
+  },
+  "Purchase": {
+    "dataSource": "db1",
+    "public": true
+  },
+  "Purchaseitem": {
+    "dataSource": "db1",
+    "public": true
+  },
+  "Purchasepayment": {
+    "dataSource": "db1",
+    "public": true
+  },
+  "Stocklog": {
+    "dataSource": "db1",
+    "public": true
+  },
+  "Subtypes": {
+    "dataSource": "db1",
+    "public": true
+  },
+  "Supplier": {
+    "dataSource": "db1",
+    "public": true
+  },
+  "Taxes": {
+    "dataSource": "db1",
+    "public": true
+  },
+  "Transport": {
+    "dataSource": "db1",
+    "public": true
+  },
+  "Type": {
+    "dataSource": "db1",
+    "public": true
+  },
+  "Unit": {
+    "dataSource": "db1",
+    "public": true
+  },
+  "Billbook": {
+    "dataSource": "db1",
+    "public": true
+  },
+  "fileUpload": {
+    "dataSource": "fileUpload",
+    "public": true
+  }
 }

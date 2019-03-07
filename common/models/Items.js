@@ -16,17 +16,20 @@ module.exports = function(Items) {
             let j=0
             if(Item.length > 0)
             {
-                if(/^[A-Za-z0-9- ]*$/.test(names) == true)
+                if(names != null)
                 {
-                    for(var i=0;i<Item.length;i++)
+                    if(/^[A-Za-z0-9- ]*$/.test(names) == true)
                     {
-                        //console.log(Item[i])
-                        if(Item[i].name.toLowerCase().search(names.toLowerCase()) > -1)
+                        for(var i=0;i<Item.length;i++)
                         {
-                            values[j]=new Object()
-                            values[j].id=Item[i].id
-                            values[j].name=Item[i].name
-                            j++
+                            //console.log(Item[i])
+                            if(Item[i].name.toLowerCase().search(names.toLowerCase()) > -1)
+                            {
+                                values[j]=new Object()
+                                values[j].id=Item[i].id
+                                values[j].name=Item[i].name
+                                j++
+                            }
                         }
                     }
                 }

@@ -1,10 +1,10 @@
 {
+  "inital:after": {
+    "./middlewares/ds_changer": {}
+  },
   "initial:before": {
     "loopback#favicon": {}
   },
-  "inital:after": {
-    "./middlewares/ds_changer": {}
-   },
   "initial": {
     "compression": {},
     "cors": {

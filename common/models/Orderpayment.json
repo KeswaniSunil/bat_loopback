@@ -1,161 +1,177 @@
 {
-	"name": "Orderpayment",
-	"properties": {
-		"id": {
-			"type": "string",
-			"required": false,
-			"length": 35,
-			"precision": null,
-			"scale": null,
-			"id": 1,
-			"mysql": {
-				"columnName": "id",
-				"dataType": "varchar",
-				"dataLength": 35,
-				"dataPrecision": null,
-				"dataScale": null,
-				"nullable": "N"
-			},
-			"updateOnly": false
-		},
-        "paymentmethod": {
-			"type": "string",
-			"required": true,
-			"length": 30,
-			"precision": null,
-			"scale": null,
-			"mysql": {
-				"columnName": "paymentMethod",
-				"dataType": "varchar",
-				"dataLength": 30,
-				"dataPrecision": null,
-				"dataScale": null,
-				"nullable": "N"
-			}
-		},
-		"recievedamount": {
-			"type": "number",
-			"required": true,
-			"length": null,
-			"precision": 22,
-			"scale": null,
-			"mysql": {
-				"columnName": "recievedAmount",
-				"dataType": "double",
-				"dataLength": null,
-				"dataPrecision": 22,
-				"dataScale": null,
-				"nullable": "N"
-			}
-		},
-		"paymentdate": {
-			"type": "date",
-			"required": true,
-			"length": null,
-			"precision": null,
-			"scale": null,
-			"mysql": {
-				"columnName": "paymentDate",
-				"dataType": "datetime",
-				"dataLength": null,
-				"dataPrecision": null,
-				"dataScale": null,
-				"nullable": "N"
-			}
-		},
-		"notes": {
-			"type": "string",
-			"required": false,
-			"length": 4294967295,
-			"precision": null,
-			"scale": null,
-			"mysql": {
-				"columnName": "Notes",
-				"dataType": "longtext",
-				"dataLength": 4294967295,
-				"dataPrecision": null,
-				"dataScale": null,
-				"nullable": "N"
-			}
-		},
-        "series": {
-			"type": "number",
-			"required": true,
-			"precision": 11,
-			"scale": null,
-			"mysql": {
-				"columnName": "series",
-				"dataType": "integer",
-				"dataPrecision": 11,
-				"dataScale": null,
-				"nullable": "N"
-			}
-		},
-		"createdon": {
-			"type": "date",
-			"required": true,
-			"length": null,
-			"precision": null,
-			"scale": null,
-			"mysql": {
-				"columnName": "createdOn",
-				"dataType": "timestamp",
-				"dataLength": null,
-				"dataPrecision": null,
-				"dataScale": null,
-				"nullable": "N"
-			}
-		},
-		"modifiedon": {
-			"type": "date",
-			"required": true,
-			"length": null,
-			"precision": null,
-			"scale": null,
-			"mysql": {
-				"columnName": "modifiedOn",
-				"dataType": "timestamp",
-				"dataLength": null,
-				"dataPrecision": null,
-				"dataScale": null,
-				"nullable": "N"
-			}
-		}
-	},
-	"settings": {
-		"strict": false,
-		"forceId": false,
-		"replaceOnPUT": true,
-		"idInjection": false,
-		"mysql": {
-			"schema": "db1",
-			"table": "orderpayment"
-		}
-	},
-	"relations": {
-		"order": {
-			"type": "belongsTo",
-			"model": "Orders",
-			"foreignKey": "",
-			"options": {
-			  "nestRemoting": true
-			}
-		  },
-		"createdBy": {
-			"type": "belongsTo",
-			"model": "User",
-			"foreignKey": "",
-			"options": {
-			  "nestRemoting": true
-			}
-		  },
-		  "modifiedBy": {
-			"type": "belongsTo",
-			"model": "User",
-			"foreignKey": "",
-			"options": {
-			  "nestRemoting": true
-			}
-		  }
-	}
+  "name": "Orderpayment",
+  "settings": {
+    "strict": false,
+    "forceId": false,
+    "replaceOnPUT": true,
+    "idInjection": false,
+    "mysql": {
+      "schema": "db1",
+      "table": "orderpayment"
+    }
+  },
+  "properties": {
+    "id": {
+      "type": "string",
+      "id": 1,
+      "required": false,
+      "length": 35,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "id",
+        "dataType": "varchar",
+        "dataLength": 35,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      },
+      "updateOnly": false
+    },
+    "paymentmethod": {
+      "type": "string",
+      "required": true,
+      "length": 30,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "paymentMethod",
+        "dataType": "varchar",
+        "dataLength": 30,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "recievedamount": {
+      "type": "number",
+      "required": true,
+      "length": null,
+      "precision": 22,
+      "scale": null,
+      "mysql": {
+        "columnName": "recievedAmount",
+        "dataType": "double",
+        "dataLength": null,
+        "dataPrecision": 22,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "paymentdate": {
+      "type": "date",
+      "required": true,
+      "length": null,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "paymentDate",
+        "dataType": "datetime",
+        "dataLength": null,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "notes": {
+      "type": "string",
+      "required": false,
+      "length": 4294967295,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "Notes",
+        "dataType": "longtext",
+        "dataLength": 4294967295,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "series": {
+      "type": "number",
+      "required": true,
+      "precision": 11,
+      "scale": null,
+      "mysql": {
+        "columnName": "series",
+        "dataType": "integer",
+        "dataPrecision": 11,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "createdon": {
+      "type": "date",
+      "required": true,
+      "length": null,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "createdOn",
+        "dataType": "timestamp",
+        "dataLength": null,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "modifiedon": {
+      "type": "date",
+      "required": true,
+      "length": null,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "modifiedOn",
+        "dataType": "timestamp",
+        "dataLength": null,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    }
+  },
+  "validations": [],
+  "relations": {
+    "order": {
+      "type": "belongsTo",
+      "model": "Orders",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "createdBy": {
+      "type": "belongsTo",
+      "model": "User",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "modifiedBy": {
+      "type": "belongsTo",
+      "model": "User",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    }
+  ],
+  "methods": {}
 }

@@ -1,216 +1,232 @@
 {
-	"name": "Items",
-	"properties": {
-		"id": {
-			"type": "string",
-			"required": false,
-			"length": 35,
-			"precision": null,
-			"scale": null,
-			"id": 1,
-			"mysql": {
-				"columnName": "id",
-				"dataType": "varchar",
-				"dataLength": 35,
-				"dataPrecision": null,
-				"dataScale": null,
-				"nullable": "N"
-			},
-			"updateOnly": false
-		},
-		"name": {
-			"type": "string",
-			"required": true,
-			"length": 4294967295,
-			"precision": null,
-			"scale": null,
-			"mysql": {
-				"columnName": "name",
-				"dataType": "longtext",
-				"dataLength": 4294967295,
-				"dataPrecision": null,
-				"dataScale": null,
-				"nullable": "N"
-			}
-		},
-		"billname": {
-			"type": "string",
-			"required": true,
-			"length": 4294967295,
-			"precision": null,
-			"scale": null,
-			"mysql": {
-				"columnName": "billName",
-				"dataType": "longtext",
-				"dataLength": 4294967295,
-				"dataPrecision": null,
-				"dataScale": null,
-				"nullable": "N"
-			}
-		},
-		"isenabled": {
-			"type": "number",
-			"required": true,
-			"length": null,
-			"precision": 3,
-			"scale": 0,
-			"mysql": {
-				"columnName": "isEnabled",
-				"dataType": "tinyint",
-				"dataLength": null,
-				"dataPrecision": 3,
-				"dataScale": 0,
-				"nullable": "N"
-			}
-		},
-		"content": {
-			"type": "string",
-			"required": true,
-			"length": 4294967295,
-			"precision": null,
-			"scale": null,
-			"mysql": {
-				"columnName": "content",
-				"dataType": "longtext",
-				"dataLength": 4294967295,
-				"dataPrecision": null,
-				"dataScale": null,
-				"nullable": "N"
-			}
-		},
-		"usedstock": {
-			"type": "number",
-			"required": false,
-			"length": null,
-			"precision": 22,
-			"scale": null,
-			"mysql": {
-				"columnName": "usedStock",
-				"dataType": "double",
-				"dataLength": null,
-				"dataPrecision": 22,
-				"dataScale": null,
-				"nullable": "N"
-			}
-		},
-		"price": {
-			"type": "number",
-			"required": true,
-			"length": null,
-			"precision": 22,
-			"scale": null,
-			"mysql": {
-				"columnName": "price",
-				"dataType": "double",
-				"dataLength": null,
-				"dataPrecision": 22,
-				"dataScale": null,
-				"nullable": "N"
-			}
-		},
-		"hsncode": {
-			"type": "string",
-			"required": false,
-			"length": 50,
-			"precision": null,
-			"scale": null,
-			"mysql": {
-				"columnName": "hsnCode",
-				"dataType": "varchar",
-				"dataLength": 50,
-				"dataPrecision": null,
-				"dataScale": null,
-				"nullable": "N"
-			}
-		},
-		"barcode": {
-			"type": "string",
-			"required": false,
-			"length": 120,
-			"precision": null,
-			"scale": null,
-			"mysql": {
-				"columnName": "barCode",
-				"dataType": "varchar",
-				"dataLength": 120,
-				"dataPrecision": null,
-				"dataScale": null,
-				"nullable": "N"
-			}
-		},
-		"createdon": {
-			"type": "date",
-			"required": true,
-			"length": null,
-			"precision": null,
-			"scale": null,
-			"mysql": {
-				"columnName": "createdOn",
-				"dataType": "timestamp",
-				"dataLength": null,
-				"dataPrecision": null,
-				"dataScale": null,
-				"nullable": "N"
-			}
-		},
-		"modifiedon": {
-			"type": "date",
-			"required": true,
-			"length": null,
-			"precision": null,
-			"scale": null,
-			"mysql": {
-				"columnName": "modifiedOn",
-				"dataType": "timestamp",
-				"dataLength": null,
-				"dataPrecision": null,
-				"dataScale": null,
-				"nullable": "N"
-			}
-		}
-	},
-	"settings": {
-		"strict": false,
-		"forceId": false,
-		"replaceOnPUT": true,
-		"idInjection": false,
-		"mysql": {
-			"schema": "db1",
-			"table": "items"
-		}
-	},
-	"relations": {
-		"unit": {
-			"type": "belongsTo",
-			"model": "Unit",
-			"foreignKey": "",
-			"options": {
-			  "nestRemoting": true
-			}
-		  },
-		  "subType": {
-			"type": "belongsTo",
-			"model": "Subtypes",
-			"foreignKey": "",
-			"options": {
-			  "nestRemoting": true
-			}
-		  },
-		"createdBy": {
-			"type": "belongsTo",
-			"model": "User",
-			"foreignKey": "",
-			"options": {
-			  "nestRemoting": true
-			}
-		  },
-		  "modifiedBy": {
-			"type": "belongsTo",
-			"model": "User",
-			"foreignKey": "",
-			"options": {
-			  "nestRemoting": true
-			}
-		  }
-	}
+  "name": "Items",
+  "settings": {
+    "strict": false,
+    "forceId": false,
+    "replaceOnPUT": true,
+    "idInjection": false,
+    "mysql": {
+      "schema": "db1",
+      "table": "items"
+    }
+  },
+  "properties": {
+    "id": {
+      "type": "string",
+      "id": 1,
+      "required": false,
+      "length": 35,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "id",
+        "dataType": "varchar",
+        "dataLength": 35,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      },
+      "updateOnly": false
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "length": 4294967295,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "name",
+        "dataType": "longtext",
+        "dataLength": 4294967295,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "billname": {
+      "type": "string",
+      "required": true,
+      "length": 4294967295,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "billName",
+        "dataType": "longtext",
+        "dataLength": 4294967295,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "isenabled": {
+      "type": "number",
+      "required": true,
+      "length": null,
+      "precision": 3,
+      "scale": 0,
+      "mysql": {
+        "columnName": "isEnabled",
+        "dataType": "tinyint",
+        "dataLength": null,
+        "dataPrecision": 3,
+        "dataScale": 0,
+        "nullable": "N"
+      }
+    },
+    "content": {
+      "type": "string",
+      "required": true,
+      "length": 4294967295,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "content",
+        "dataType": "longtext",
+        "dataLength": 4294967295,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "usedstock": {
+      "type": "number",
+      "required": false,
+      "length": null,
+      "precision": 22,
+      "scale": null,
+      "mysql": {
+        "columnName": "usedStock",
+        "dataType": "double",
+        "dataLength": null,
+        "dataPrecision": 22,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "price": {
+      "type": "number",
+      "required": true,
+      "length": null,
+      "precision": 22,
+      "scale": null,
+      "mysql": {
+        "columnName": "price",
+        "dataType": "double",
+        "dataLength": null,
+        "dataPrecision": 22,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "hsncode": {
+      "type": "string",
+      "required": false,
+      "length": 50,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "hsnCode",
+        "dataType": "varchar",
+        "dataLength": 50,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "barcode": {
+      "type": "string",
+      "required": false,
+      "length": 120,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "barCode",
+        "dataType": "varchar",
+        "dataLength": 120,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "createdon": {
+      "type": "date",
+      "required": true,
+      "length": null,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "createdOn",
+        "dataType": "timestamp",
+        "dataLength": null,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "modifiedon": {
+      "type": "date",
+      "required": true,
+      "length": null,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "modifiedOn",
+        "dataType": "timestamp",
+        "dataLength": null,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    }
+  },
+  "validations": [],
+  "relations": {
+    "unit": {
+      "type": "belongsTo",
+      "model": "Unit",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "subType": {
+      "type": "belongsTo",
+      "model": "Subtypes",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "createdBy": {
+      "type": "belongsTo",
+      "model": "User",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "modifiedBy": {
+      "type": "belongsTo",
+      "model": "User",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    }
+  ],
+  "methods": {}
 }
