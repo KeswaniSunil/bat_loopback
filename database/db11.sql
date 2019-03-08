@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 28, 2019 at 12:56 PM
+-- Generation Time: Mar 08, 2019 at 08:39 AM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -33,6 +33,10 @@ CREATE TABLE IF NOT EXISTS `accesstoken` (
   `created` datetime DEFAULT NULL,
   `userId` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `accesstoken`
+--
 
 -- --------------------------------------------------------
 
@@ -72,6 +76,7 @@ CREATE TABLE IF NOT EXISTS `billbook` (
 -- Dumping data for table `billbook`
 --
 
+
 -- --------------------------------------------------------
 
 --
@@ -90,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `configuration` (
 --
 
 INSERT INTO `configuration` (`id`, `alias`, `value`, `description`) VALUES
-('5aef735c-a1ba-4a86-b072-28fe34026b6', 'manage_transport', 1, 'trnasport');
+('5aef735c-a1ba-4a86-b072-28fe34026b6', 'manage_transport', 1, 'transport');
 
 -- --------------------------------------------------------
 
@@ -162,8 +167,7 @@ CREATE TABLE IF NOT EXISTS `customertype` (
 --
 
 INSERT INTO `customertype` (`id`, `name`, `isEnabled`, `createdOn`, `modifiedOn`, `createdById`, `modifiedById`) VALUES
-('0131ef88-91a1-4b63-9a5a-d5a36cd0252', 'Same', 1, '2019-02-05 02:29:14', '2019-02-05 02:29:14', 1, 1),
-('c4e926dd-1eda-11e9-8b87-54e1ad6c800', 'mmm', 1, '2019-01-23 06:47:36', '2019-01-23 06:47:36', 1, 1);
+('0131ef88-91a1-4b63-9a5a-d5a36cd0252', 'Same', 1, '2019-02-05 02:29:14', '2019-02-05 02:29:14', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -196,7 +200,7 @@ CREATE TABLE IF NOT EXISTS `details` (
 --
 
 INSERT INTO `details` (`id`, `name`, `mobile`, `address`, `state`, `city`, `stateCode`, `gstin`, `bankAccountNo`, `bankAccountName`, `bankName`, `bankIFSC`, `termsAndConditions`, `billUpperText`, `logo`, `createdOn`, `modifiedOn`) VALUES
-('997525ef-eb0b-43f6-8578-2eb311e12cc', 'Company Name', 'string', 'string,fds sdfsdf, dsfsdf, dfsdf, dsfsd, dsfdfsdsdfd', 'string', 'string', 0, 'string', '11111', 'string', 'string33', 'string', 'string', 'Tax Invoice', 'aab', '2019-02-27 03:14:12', '2019-02-27 03:14:12');
+('997525ef-eb0b-43f6-8578-2eb311e12cc', 'Jay11', 'string', 'string,fds sdfsdf, dsfsdf, dfsdf, dsfsd, dsfdfsdsdfd', 'string', 'string', 0, 'string', '11111', 'string', 'string33', 'string', 'string', 'Tax Invoice', 'aab', '2019-03-08 01:30:34', '2019-03-08 01:30:34');
 
 -- --------------------------------------------------------
 
@@ -249,7 +253,7 @@ CREATE TABLE IF NOT EXISTS `items` (
   `billName` longtext NOT NULL,
   `isEnabled` tinyint(1) NOT NULL,
   `content` longtext NOT NULL,
-  `usedStock` double NOT NULL DEFAULT '0',
+  `usedStock` double DEFAULT '0',
   `unitId` varchar(35) NOT NULL,
   `subTypeId` varchar(35) NOT NULL,
   `price` double NOT NULL,
@@ -285,6 +289,8 @@ CREATE TABLE IF NOT EXISTS `orderitem` (
 -- Dumping data for table `orderitem`
 --
 
+-- --------------------------------------------------------
+
 --
 -- Table structure for table `orderpayment`
 --
@@ -302,6 +308,11 @@ CREATE TABLE IF NOT EXISTS `orderpayment` (
   `createdById` int(11) NOT NULL,
   `modifiedById` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `orderpayment`
+--
+
 -- --------------------------------------------------------
 
 --
@@ -337,7 +348,9 @@ CREATE TABLE IF NOT EXISTS `orders` (
 --
 -- Dumping data for table `orders`
 --
+
 -- --------------------------------------------------------
+
 --
 -- Table structure for table `purchase`
 --
@@ -364,6 +377,9 @@ CREATE TABLE IF NOT EXISTS `purchase` (
   `modifiedById` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `purchase`
+--
 
 -- --------------------------------------------------------
 
@@ -381,6 +397,9 @@ CREATE TABLE IF NOT EXISTS `purchaseitem` (
   `series` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `purchaseitem`
+--
 
 -- --------------------------------------------------------
 
@@ -402,6 +421,11 @@ CREATE TABLE IF NOT EXISTS `purchasepayment` (
   `modifiedById` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `purchasepayment`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -414,7 +438,14 @@ CREATE TABLE IF NOT EXISTS `role` (
   `description` varchar(512) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `role`
+--
+
+INSERT INTO `role` (`id`, `name`, `description`, `created`, `modified`) VALUES
+(2, 'admin', NULL, '2019-03-07 06:36:14', '2019-03-07 06:36:14');
 
 -- --------------------------------------------------------
 
@@ -427,7 +458,14 @@ CREATE TABLE IF NOT EXISTS `rolemapping` (
   `principalType` varchar(512) DEFAULT NULL,
   `principalId` int(11) NOT NULL,
   `roleId` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `rolemapping`
+--
+
+INSERT INTO `rolemapping` (`id`, `principalType`, `principalId`, `roleId`) VALUES
+(1, 'USER', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -438,6 +476,7 @@ CREATE TABLE IF NOT EXISTS `rolemapping` (
 CREATE TABLE IF NOT EXISTS `stocklog` (
   `id` varchar(35) NOT NULL,
   `itemId` varchar(35) NOT NULL,
+  `purchaseId` varchar(35) DEFAULT NULL,
   `quantity` double NOT NULL,
   `isEnabled` tinyint(4) NOT NULL DEFAULT '1',
   `createdOn` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -471,6 +510,7 @@ CREATE TABLE IF NOT EXISTS `subtypes` (
 -- Dumping data for table `subtypes`
 --
 
+
 -- --------------------------------------------------------
 
 --
@@ -501,6 +541,7 @@ CREATE TABLE IF NOT EXISTS `supplier` (
 --
 -- Dumping data for table `supplier`
 --
+
 
 -- --------------------------------------------------------
 
@@ -542,6 +583,7 @@ CREATE TABLE IF NOT EXISTS `transport` (
   `id` varchar(35) NOT NULL,
   `name` varchar(150) NOT NULL,
   `vehicleNo` varchar(20) NOT NULL,
+  `isEnabled` tinyint(4) NOT NULL,
   `createdOn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modifiedOn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `createdById` int(11) NOT NULL,
@@ -551,6 +593,7 @@ CREATE TABLE IF NOT EXISTS `transport` (
 --
 -- Dumping data for table `transport`
 --
+
 
 -- --------------------------------------------------------
 
@@ -569,6 +612,9 @@ CREATE TABLE IF NOT EXISTS `type` (
   `modifiedById` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `type`
+--
 
 -- --------------------------------------------------------
 
@@ -611,7 +657,6 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`id`, `realm`, `username`, `password`, `email`, `emailVerified`, `verificationToken`) VALUES
 (1, NULL, NULL, '$2a$10$EsD1Obyxk9OJ.oOvniGZLu1QpaEx4vp7nvZE8asoB6EOwPQkSSg0G', 'somani@gmail.com', NULL, NULL);
-
 --
 -- Indexes for dumped tables
 --
@@ -727,7 +772,6 @@ ALTER TABLE `orders`
   ADD KEY `createdBy` (`createdById`),
   ADD KEY `modifiedBy` (`modifiedById`);
 
-
 --
 -- Indexes for table `purchase`
 --
@@ -840,12 +884,12 @@ ALTER TABLE `acl`
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `rolemapping`
 --
 ALTER TABLE `rolemapping`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `user`
 --
