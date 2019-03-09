@@ -1,29 +1,31 @@
-var app = require('../server');
+let app = require('../server');
 module.exports = function(options) {
   return function(req, res, next) {
-    var Config= app.models.Config
-     var d=req.url.split('/')[1]
+    let Config= app.models.Config
+    //console.log(Config) 
+    let d=req.url.split('/')[1]
      if(req.url.search('explorer') > -1)
      {
         next();
      }
      else{
-     Config.find({include:['company']}, function(err, configs){
-        var dbName=new Array();
-        for(let i=0;i<configs.length;i++)
+     Config.find({include:['company'],where:{name:d}},function(err, configs){
+        // let dbName=new Array();
+        // for(let i=0;i<configs.length;i++)
+        // {
+        //     let p=configs[i].toJSON();
+        //     if(p.company.name == d)
+        //     {
+        //         dbName[0]=configs[i].dbName
+        //         break;
+        //     }
+        // }
+        if(configs.length > 0)
         {
-            var p=configs[i].toJSON();
-            if(p.company.name == d)
-            {
-                dbName[0]=configs[i].dbName
-                break;
-            }
-        }
-        if(dbName.length > 0)
-        {
-            var models = app.models();
-            var dtsrc=dbName[0]
-                //var dataSourceName = Model.getDataSource().settings.name;
+            console.log(configs)
+            let models = app.models();
+            let dtsrc=configs[0].dbName
+                //let dataSourceName = Model.getDataSource().settings.name;
                 //console.log("////////////////////////////////////////////////00000000000")
                 //console.log(app.dataSources[dtsrc])
             models.forEach(function(model) {
