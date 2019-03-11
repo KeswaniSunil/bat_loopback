@@ -12,31 +12,36 @@ module.exports = function(Supplier) {
   Supplier.supplierNames = async function(names){
     let r_p=new Promise((resolve, reject)=>{
         Supplier.find({fields:['id','name'],where:{isenabled:1}},(err, Suppliers)=>{
+            let values=new Array()
+            let j=0
             if(Suppliers.length > 0)
             {
-                let values=new Array()
-                var j=0
-                if(/^[A-Za-z0-9- ]*$/.test(names) == true)
+                if(names != null)
                 {
-                    for(var i=0;i<Suppliers.length;i++)
+                    if(/^[A-Za-z0-9- ]*$/.test(names) == true)
                     {
-                        if(Suppliers[i].name.toLowerCase().search(names.toLowerCase()) > -1)
+                        for(var i=0;i<Suppliers.length;i++)
                         {
-                            values[j]=new Object()
-                            values[j].id=Suppliers[i].id
-                            values[j].name=Suppliers[i].name
-                            j++
+                            if(Suppliers[i].name.toLowerCase().search(names.toLowerCase()) > -1)
+                            {
+                                values[j]=new Object()
+                                values[j].id=Suppliers[i].id
+                                values[j].name=Suppliers[i].name
+                                j++
+                            }
                         }
                     }
                 }
-
                 values[j]=new Object()
                 values[j].id=0
                 values[j].name="<center><div class='col-12 font-14 fa fa-plus' style='border:1px solid #9b9c9c;padding:5px;color:gray'>Add New</div></center>"
                 resolve(values)
             }
             else {
-                resolve("false")
+                values[j]=new Object()
+                values[j].id=0
+                values[j].name="<center><div class='col-12 font-14 fa fa-plus' style='border:1px solid #9b9c9c;padding:5px;color:gray'>Add New</div></center>"
+                resolve(values)
             }
         })
       })
