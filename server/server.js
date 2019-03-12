@@ -37,6 +37,7 @@ boot(app, __dirname, function(err) {
           "password": "",
           "name": Configs[x].dbName,
           "url": "",
+          "timezone": "IST",
           "connector": require('loopback-connector-mysql'),
          };          // Hold a reference to dataSource
          app.dataSource(''+Configs[x].dbName,settings);

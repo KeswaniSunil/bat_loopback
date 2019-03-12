@@ -64,10 +64,11 @@ module.exports = function(Orders) {
         "http": {"verb": "get", "path": "/BillNo"},
     })
 
-    Orders.deleteOrder = async function(orderId){
+    Orders.deleteorder = async function(orderId){
         var promise = new Promise((resolve, reject)=>{
             let Items = app.models.Items
             let Customer = app.models.Customer
+            let Stocklog = app.models.Stocklog
             for(let i=0;i<orderId.length;i++)
             {
                 Orders.updateAll({id:orderId[i]},{isenabled:0},(err, order)=>{
@@ -79,30 +80,31 @@ module.exports = function(Orders) {
                         receivedamount -= ordercustomer[0].receivedamount
                         Customer.updateAll({id:ordercustomer[0].customerId},{totalamount: totalamount,received: receivedamount},(err,orderUpdate)=>{
                             let Orderitem = app.models.Orderitem
-                            Orderitem.find({include:['item'],where:{orderId:orderId[i]}},(err, orderitem)=>{
-                                //console.log(orderitem)
-                                for(let j=0;j<orderitem.length;j++)
-                                {
-                                    console.log(orderitem[j].itemId)
-                                    let orderitemdetails = orderitem[j].toJSON().item
-                                    let usedstock = orderitemdetails.usedstock - orderitem[j].quantity
-                                    Items.updateAll({id:orderitem[j].itemId},{usedstock:usedstock},(err, res)=>{
-                                        if(i == orderId.length - 1) resolve("done")
-                                    })
-                                }
+                            Stocklog.updateAll({orderId:orderId[i]},{isenabled:0},(err, res)=>{
+                                Orderitem.find({include:['item'],where:{orderId:orderId[i]}},(err, orderitem)=>{
+                                    //console.log(orderitem)
+                                    for(let j=0;j<orderitem.length;j++)
+                                    {
+                                        //console.log(orderitem[j].itemId)
+                                        let orderitemdetails = orderitem[j].toJSON().item
+                                        let usedstock = orderitemdetails.usedstock - orderitem[j].quantity
+                                        Items.updateAll({id:orderitem[j].itemId},{usedstock:usedstock},(err, res)=>{
+                                            if(i == orderId.length - 1) resolve("done")
+                                        })
+                                    }
+                                })
                             })
                         })
                     })
                 })
             }
         })
-        console.log(promise)
         const billNo = await promise
         return billNo
     }
-    Orders.remoteMethod('deleteOrder',{
+    Orders.remoteMethod('deleteorder',{
         accepts: {arg: 'orderId', type: 'Array'},
-        returns: {arg: 'BillNo', type: 'string'},
-        "http": {"verb": "post", "path": "/deleteOrder"},
+        returns: {arg: 'status', type: 'string'},
+        "http": {"verb": "post", "path": "/deleteorder"},
     })
 };

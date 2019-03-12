@@ -22,7 +22,7 @@ module.exports = function(options) {
         // }
         if(configs.length > 0)
         {
-            console.log(configs)
+            //console.log(configs)
             let models = app.models();
             let dtsrc=configs[0].dbName
                 //let dataSourceName = Model.getDataSource().settings.name;

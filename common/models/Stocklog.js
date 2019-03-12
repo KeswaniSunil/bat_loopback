@@ -7,6 +7,7 @@ module.exports = function(Stocklog) {
     } else {
       ctx.data.id = uuidV4();
     }
+    console.log(ctx)
     cb();
   });    
 };

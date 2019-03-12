@@ -28,6 +28,51 @@
       },
       "updateOnly": false
     },
+    "price": {
+      "type": "number",
+      "required": true,
+      "length": null,
+      "precision": 22,
+      "scale": null,
+      "mysql": {
+        "columnName": "price",
+        "dataType": "double",
+        "dataLength": null,
+        "dataPrecision": 22,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "notes": {
+      "type": "string",
+      "required": false,
+      "length": 4294967295,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "notes",
+        "dataType": "longtext",
+        "dataLength": 4294967295,
+        "dataPrecision": null,
+        "dataScale": null
+      },
+      "updateOnly": false
+    },
+    "date": {
+      "type": "date",
+      "required": true,
+      "length": null,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "date",
+        "dataType": "datetime",
+        "dataLength": null,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
     "quantity": {
       "type": "number",
       "required": true,
@@ -102,6 +147,14 @@
     "purchase": {
       "type": "belongsTo",
       "model": "Purchase",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "order": {
+      "type": "belongsTo",
+      "model": "Orders",
       "foreignKey": "",
       "options": {
         "nestRemoting": true

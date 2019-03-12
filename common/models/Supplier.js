@@ -22,7 +22,7 @@ module.exports = function(Supplier) {
                     {
                         for(var i=0;i<Suppliers.length;i++)
                         {
-                            if(Suppliers[i].name.toLowerCase().search(names.toLowerCase()) > -1)
+                            if(Suppliers[i].name.toLowerCase().replace(/ /g,"").search(names.toLowerCase().replace(/ /g,"")) > -1)
                             {
                                 values[j]=new Object()
                                 values[j].id=Suppliers[i].id

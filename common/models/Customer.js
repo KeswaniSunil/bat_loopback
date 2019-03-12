@@ -22,7 +22,7 @@ module.exports = function(Customer) {
                     {
                         for(var i=0;i<Customers.length;i++)
                         {
-                            if(Customers[i].name.toLowerCase().search(names.toLowerCase()) > -1)
+                            if(Customers[i].name.toLowerCase().replace(/ /g,"").search(names.toLowerCase().replace(/ /g,"")) > -1)
                             {
                                 values[j]=new Object()
                                 values[j].id=Customers[i].id

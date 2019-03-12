@@ -23,7 +23,7 @@ module.exports = function(Items) {
                         for(var i=0;i<Item.length;i++)
                         {
                             //console.log(Item[i])
-                            if(Item[i].name.toLowerCase().search(names.toLowerCase()) > -1)
+                            if(Item[i].name.toLowerCase().replace(/ /g,"").search(names.toLowerCase().replace(/ /g,"")) > -1)
                             {
                                 values[j]=new Object()
                                 values[j].id=Item[i].id

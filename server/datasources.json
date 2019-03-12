@@ -11,7 +11,8 @@
     "password": "",
     "name": "jdm_main",
     "user": "root",
-    "connector": "mysql"
+    "connector": "mysql",
+    "timezone": "IST"
   },
   "db1": {
     "host": "localhost",
@@ -21,7 +22,8 @@
     "password": "",
     "name": "db1",
     "user": "root",
-    "connector": "mysql"
+    "connector": "mysql",
+    "timezone": "IST"
   },
   "fileUpload": {
     "name": "fileUpload",
