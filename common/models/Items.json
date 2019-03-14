@@ -103,6 +103,21 @@
         "nullable": "N"
       }
     },
+    "totalstock": {
+      "type": "number",
+      "required": false,
+      "length": null,
+      "precision": 22,
+      "scale": null,
+      "mysql": {
+        "columnName": "totalStock",
+        "dataType": "double",
+        "dataLength": null,
+        "dataPrecision": 22,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
     "price": {
       "type": "number",
       "required": true,

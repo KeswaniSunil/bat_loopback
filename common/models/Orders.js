@@ -64,7 +64,7 @@ module.exports = function(Orders) {
         "http": {"verb": "get", "path": "/BillNo"},
     })
 
-    Orders.deleteorder = async function(orderId){
+    Orders.deleteorder = async function(orderId,userId){
         let promise = new Promise((resolve, reject)=>{
             (async function loop() {
                 let Items = app.models.Items
@@ -73,7 +73,12 @@ module.exports = function(Orders) {
                 for(let i=0;i<orderId.length;i++)
                 {
                     await new Promise(resolve1=>{
-                        Orders.updateAll({id:orderId[i]},{isenabled:0},(err, order)=>{
+                        let date = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString();
+                        Orders.updateAll({id:orderId[i]},{
+                                isenabled:0,
+                                modifiedon: date,
+                                modifiedById:userId
+                            },(err, order)=>{
                             Orders.find({include:['customer'],where:{id:orderId[i]}},(err, ordercustomer)=>{
                                 let customersdetails = ordercustomer[0].toJSON().customer
                                 let totalamount = customersdetails.totalamount
@@ -82,9 +87,23 @@ module.exports = function(Orders) {
                                 receivedamount -= ordercustomer[0].receivedamount
                                 Customer.updateAll({id:ordercustomer[0].customerId},{totalamount: totalamount,received: receivedamount},(err,orderUpdate)=>{
                                     let Orderitem = app.models.Orderitem
-                                    Stocklog.updateAll({orderId:orderId[i]},{isenabled:0,notes:'Sales Return of Bill No '+ordercustomer[0].billno},(err, res)=>{
-                                        Orderitem.find({where:{orderId:orderId[i]}},(err, orderitem)=>{
-                                            //console.log(orderitem)
+                                    Orderitem.find({where:{orderId:orderId[i]}},(err, orderitem)=>{
+                                        let stocklog = []        //console.log(orderitem)
+                                        for(let k=0;k<orderitem.length;k++)
+                                        {
+                                            stocklog[k]=new Object();
+                                            stocklog[k].itemId = orderitem[k].itemId
+                                            stocklog[k].orderId = orderId[i]
+                                            stocklog[k].price = orderitem[k].itemprice
+                                            stocklog[k].date=new Date()
+                                            stocklog[k].notes="Sales Return"
+                                            stocklog[k].quantity = parseInt(orderitem[k].quantity) - parseInt(orderitem[k].quantity) - parseInt(orderitem[k].quantity)
+                                            stocklog[k].createdon= new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString()
+                                            stocklog[k].modifiedon= new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString()
+                                            stocklog[k].createdById=userId
+                                            stocklog[k].modifiedById=userId
+                                        }
+                                        Stocklog.create(stocklog,(err,sl)=>{
                                             (async function loop1(){
                                                 for(let j=0;j<orderitem.length;j++)
                                                 {
@@ -121,7 +140,10 @@ module.exports = function(Orders) {
         return billNo
     }
     Orders.remoteMethod('deleteorder',{
-        accepts: {arg: 'orderId', type: 'Array'},
+        accepts:[
+                    {arg: 'orderId', type: 'any'},
+                    {arg: 'userId', type: 'number'},
+                ],
         returns: {arg: 'status', type: 'string'},
         "http": {"verb": "post", "path": "/deleteorder"},
     })
@@ -228,8 +250,8 @@ module.exports = function(Orders) {
     }
     Orders.remoteMethod('usedstockcal',{
         accepts: [
-                    {arg: 'itemId', type: 'Array'},
-                    {arg: 'itemquantity', type: 'Array'},
+                    {arg: 'itemId', type: 'any'},
+                    {arg: 'itemquantity', type: 'any'},
                     {arg: 'type', type:'string'}
                 ],
         returns: {arg: 'status', type: 'string'},
