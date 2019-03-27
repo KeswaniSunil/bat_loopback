@@ -257,4 +257,37 @@ module.exports = function(Orders) {
         returns: {arg: 'status', type: 'string'},
         "http": {"verb": "post", "path": "/usedstockcal"},
     })
+    Orders.getOrders = async function(filter){
+        let limit = (filter.limit != null) ? filter.limit : null
+        let skip = (filter.skip != null) ? filter.skip : 0
+        let search = (filter.search != null) ? filter.search : ""
+        let total = []
+        let promise = new Promise((resolve, reject)=>{
+            Orders.find({include:['customer','billbook'],where:{and:[{isenabled:1},{billdate:{between:[filter.startdate,filter.enddate]}}]}},(err, order)=>{
+                //console.log(order)
+                let records=[]
+                for(let i=0;i<order.length;i++)
+                {
+                    let customer = order[i].customer()
+                    let name = customer.name
+                    if(name.search(search) > -1)
+                    {
+                        records.push(order[i])
+                        
+                    }
+                    if(i == order.length - 1)
+                    {
+                        resolve(records)
+                    }
+                }
+            })
+        })
+        total = await promise
+        return [total.length,total.splice(skip, limit)]
+    } 
+    Orders.remoteMethod('getOrders',{
+        accepts: {arg: 'filter', type: 'any'},
+        returns: [{arg: "total", type:"number"},{arg: "data", type: 'array'}],
+        "http": {"verb": "get", "path": "/getOrders"},
+    })
 };
