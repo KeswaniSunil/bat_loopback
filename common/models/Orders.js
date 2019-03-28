@@ -262,18 +262,22 @@ module.exports = function(Orders) {
         let skip = (filter.skip != null) ? filter.skip : 0
         let search = (filter.search != null) ? filter.search : ""
         let total = []
+        let field = filter.sort
+        let ascdesc = (filter.descending == 'true') ? 'desc' : 'asc'
+        let orderby = (field == 'name' || field == 'billno') ? null : field+' '+ascdesc
         let promise = new Promise((resolve, reject)=>{
-            Orders.find({include:['customer','billbook'],where:{and:[{isenabled:1},{billdate:{between:[filter.startdate,filter.enddate]}}]}},(err, order)=>{
+            Orders.find({include:['customer','billbook'],order:orderby,where:{and:[{billbookId:filter.billbookId},{isenabled:1},{billdate:{between:[filter.startdate,filter.enddate]}}]}},(err, order)=>{
                 //console.log(order)
                 let records=[]
                 for(let i=0;i<order.length;i++)
                 {
                     let customer = order[i].customer()
                     let name = customer.name
-                    if(name.search(search) > -1)
+                    let date = new Date(order[i].billdate).getDate()+"/"+(new Date(order[i].billdate).getMonth()+1)+"/"+new Date(order[i].billdate).getFullYear()
+                    let billno = order[i].billbook().prefix+""+order[i].billno
+                    if(billno.toLowerCase().search(search.toLowerCase()) > -1 || name.toLowerCase().search(search.toLowerCase()) > -1 || new String(order[i].totalamount).search(search) > -1 || date.search(search) > -1)
                     {
                         records.push(order[i])
-                        
                     }
                     if(i == order.length - 1)
                     {
@@ -283,8 +287,36 @@ module.exports = function(Orders) {
             })
         })
         total = await promise
+        if(limit == -1) limit = total.length
+        if(field == 'name') {
+            total.sort(function(a,b) {
+                if ( new String(a.customer().name).trim().toLowerCase() < new String(b.customer().name).trim().toLowerCase() ) {
+                    if(ascdesc == 'asc') return -1;
+                    else return 1
+                }
+                if ( new String(a.customer().name).trim().toLowerCase() > new String(b.customer().name).trim().toLowerCase() ){
+                    if(ascdesc == 'asc') return 1;
+                    else return -1
+                }
+                return 0;
+            });
+        }
+        else if(field == 'billno'){
+            total.sort(function(a,b) {
+                if ( new String(a.billbook().prefix+""+a.billno).trim().toLowerCase() < new String(b.billbook().prefix+""+b.billno).trim().toLowerCase() ) {
+                    if(ascdesc == 'asc') return -1;
+                    else return 1
+                }
+                if ( new String(a.billbook().prefix+""+a.billno).trim().toLowerCase() > new String(b.billbook().prefix+""+b.billno).trim().toLowerCase() ){
+                    if(ascdesc == 'asc') return 1;
+                    else return -1
+                }
+                return 0;
+            });
+        }
+        for(let i=0;i<total.length;i++) total[i].index = i
         return [total.length,total.splice(skip, limit)]
-    } 
+    }
     Orders.remoteMethod('getOrders',{
         accepts: {arg: 'filter', type: 'any'},
         returns: [{arg: "total", type:"number"},{arg: "data", type: 'array'}],
