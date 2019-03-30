@@ -27,15 +27,9 @@ module.exports = function (Supplier) {
                             }
                         }
                     }
-                    values[j] = new Object()
-                    values[j].id = 0
-                    values[j].name = "<center><div class='col-12 font-14 fa fa-plus' style='border:1px solid #9b9c9c;padding:5px;color:gray'>Add New</div></center>"
                     resolve(values)
                 }
                 else {
-                    values[j] = new Object()
-                    values[j].id = 0
-                    values[j].name = "<center><div class='col-12 font-14 fa fa-plus' style='border:1px solid #9b9c9c;padding:5px;color:gray'>Add New</div></center>"
                     resolve(values)
                 }
             })

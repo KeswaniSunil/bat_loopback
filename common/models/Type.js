@@ -27,15 +27,9 @@ module.exports = function (Type) {
                             }
                         }
                     }
-                    values[j] = new Object()
-                    values[j].id = 0
-                    values[j].name = "<center><div class='col-12 font-14 fa fa-plus' style='border:1px solid #9b9c9c;padding:5px;color:gray'>Add New</div></center>"
                     resolve(values)
                 }
                 else {
-                    values[j] = new Object()
-                    values[j].id = 0
-                    values[j].name = "<center><div class='col-12 font-14 fa fa-plus' style='border:1px solid #9b9c9c;padding:5px;color:gray'>Add New</div></center>"
                     resolve(values)
                 }
             })
@@ -65,13 +59,15 @@ module.exports = function (Type) {
         let total = []
         let field = filter.sort
         let ascdesc = (filter.descending == 'true') ? 'desc' : 'asc'
-        let orderby = field + ' ' + ascdesc
+        let orderby = (field == 'tax') ? null : field + ' ' + ascdesc
         let promise = new Promise((resolve, reject) => {
-            Type.find({ order: orderby, where: { and: [{ isenabled: 1 }] } }, (err, type) => {
+            Type.find({ include:['tax'], order: orderby, where: { and: [{ isenabled: 1 }] } }, (err, type) => {
                 //console.log(order)
                 let records = []
                 for (let i = 0; i < type.length; i++) {
-                    if (new String(type[i].name).trim().toLowerCase().search(search.trim().toLowerCase()) > -1 ) {
+                    let tax = (type[i].taxId != '') ? type[i].tax().percentage+"" : "-"
+                    if (new String(type[i].name).trim().toLowerCase().search(search.trim().toLowerCase()) > -1 ||
+                        tax.trim().toLowerCase().search(search.trim().toLowerCase()) > -1 ) {
                         records.push(type[i])
                     }
                     if (i == type.length - 1) {
@@ -82,6 +78,23 @@ module.exports = function (Type) {
         })
         total = await promise
         if (limit == -1) limit = total.length
+        if (field == 'tax') {
+            total.sort(function (a, b) {
+                let tax = (a.taxId != '') ? a.tax().percentage : "-"
+                if(tax < 10) tax = "0"+tax
+                let tax2 = (b.taxId != '') ? b.tax().percentage : "-"
+                if(tax2 < 10) tax2 = "0"+tax2
+                if (new String(tax).trim().toLowerCase() < new String(tax2).trim().toLowerCase()) {
+                    if (ascdesc == 'asc') return -1;
+                    else return 1
+                }
+                if (new String(tax).trim().toLowerCase() > new String(tax2).trim().toLowerCase()) {
+                    if (ascdesc == 'asc') return 1;
+                    else return -1
+                }
+                return 0;
+            });
+        }
         for (let i = 0; i < total.length; i++) total[i].index = i
         return [total.length, total.splice(skip, limit)]
     }

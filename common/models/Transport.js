@@ -32,15 +32,9 @@ module.exports = function(Transport) {
                             }
                         }
                     }    
-                    values[j]=new Object()
-                    values[j].id=0
-                    values[j].name="<center><div class='col-12 font-14 fa fa-plus' style='border:1px solid #9b9c9c;padding:5px;color:gray'>Add New</div></center>"
                     resolve(values)
                 }
                 else {
-                    values[j]=new Object()
-                    values[j].id=0
-                    values[j].name="<center><div class='col-12 font-14 fa fa-plus' style='border:1px solid #9b9c9c;padding:5px;color:gray'>Add New</div></center>"
                     resolve(values)
                 }
             })
@@ -62,4 +56,38 @@ module.exports = function(Transport) {
             "path":"/transportNames"
         }
       })
+
+      Transport.getTransports = async function (filter) {
+        let limit = (filter.limit != null) ? filter.limit : null
+        let skip = (filter.skip != null) ? filter.skip : 0
+        let search = (filter.search != null) ? filter.search : ""
+        let total = []
+        let field = filter.sort
+        let ascdesc = (filter.descending == 'true') ? 'desc' : 'asc'
+        let orderby = field + ' ' + ascdesc
+        let promise = new Promise((resolve, reject) => {
+            Transport.find({ order: orderby, where: { and: [{ isenabled: 1 }] } }, (err, transport) => {
+                //console.log(order)
+                let records = []
+                for (let i = 0; i < transport.length; i++) {
+                    if (new String(transport[i].name).trim().toLowerCase().search(search.trim().toLowerCase()) > -1 ||
+                        new String(transport[i].vehicleno).trim().toLowerCase().search(search.trim().toLowerCase()) > -1 ) {
+                        records.push(transport[i])
+                    }
+                    if (i == transport.length - 1) {
+                        resolve(records)
+                    }
+                }
+            })
+        })
+        total = await promise
+        if (limit == -1) limit = total.length
+        for (let i = 0; i < total.length; i++) total[i].index = i
+        return [total.length, total.splice(skip, limit)]
+    }
+    Transport.remoteMethod('getTransports', {
+        accepts: { arg: 'filter', type: 'any' },
+        returns: [{ arg: "total", type: "number" }, { arg: "data", type: 'array' }],
+        "http": { "verb": "get", "path": "/getTransports" },
+    })
 };
