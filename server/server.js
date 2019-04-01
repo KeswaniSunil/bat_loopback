@@ -1,7 +1,7 @@
 'use strict';
 
 var loopback = require('loopback');
-var boot = require('loopback-boot');
+var boot = require('loopback-boot'); 
 
 var app = module.exports = loopback();
 
@@ -27,16 +27,15 @@ boot(app, __dirname, function(err) {
     {
       if(Configs[x].dbName != "jdm_main")
       {
-        var DataSource = require('loopback-datasource-juggler').DataSource;
-        var sqlConnector = require('loopback-connector-mysql');
+        let DataSource = require('./datasources')
         var settings = {
-          "host": "localhost",
-          "port": 3306,
+          "host": DataSource.jdm_main.host,
+          "port": DataSource.jdm_main.port,
           "database": Configs[x].dbName,
-          "user": "root",
-          "password": "",
+          "user": DataSource.jdm_main.user,
+          "password": DataSource.jdm_main.password,
           "name": Configs[x].dbName,
-          "url": "",
+          "url": DataSource.jdm_main.url,
           "timezone": "IST",
           "connector": require('loopback-connector-mysql'),
          };          // Hold a reference to dataSource

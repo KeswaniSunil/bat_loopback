@@ -64,18 +64,21 @@ module.exports = function (Supplier) {
             Supplier.find({ order: orderby, where: { and: [{ isenabled: 1 }] } }, (err, supplier) => {
                 //console.log(order)
                 let records = []
-                for (let i = 0; i < supplier.length; i++) {
-                    if (new String(supplier[i].name).trim().toLowerCase().search(search.trim().toLowerCase()) > -1 ||
-                        new String(supplier[i].mobile).search(search) > -1 ||
-                        new String(supplier[i].totalamount).search(search) > -1 ||
-                        new String(supplier[i].paid).search(search) > -1 ||
-                        new String(parseFloat(supplier[i].totalamount) - parseFloat(supplier[i].paid)).search(search) > -1) {
-                        records.push(supplier[i])
-                    }
-                    if (i == supplier.length - 1) {
-                        resolve(records)
+                if(supplier.length > 0) {
+                    for (let i = 0; i < supplier.length; i++) {
+                        if (new String(supplier[i].name).trim().toLowerCase().search(search.trim().toLowerCase()) > -1 ||
+                            new String(supplier[i].mobile).search(search) > -1 ||
+                            new String(supplier[i].totalamount).search(search) > -1 ||
+                            new String(supplier[i].paid).search(search) > -1 ||
+                            new String(parseFloat(supplier[i].totalamount) - parseFloat(supplier[i].paid)).search(search) > -1) {
+                            records.push(supplier[i])
+                        }
+                        if (i == supplier.length - 1) {
+                            resolve(records)
+                        }
                     }
                 }
+                else resolve(records)
             })
         })
         total = await promise

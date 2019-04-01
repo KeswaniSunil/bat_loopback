@@ -3,10 +3,12 @@ var mysql = require('mysql')
 var fs = require('fs');
 module.exports = function(server) {
   // Install a `/` route that returns server status
+  let DataSource = require('../datasources')
+  
   let con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
+    host: DataSource.jdm_main.host,
+    user: DataSource.jdm_main.user,
+    password: DataSource.jdm_main.password,
     //multipleStatements: true
   });
   var router = server.loopback.Router();
@@ -24,9 +26,9 @@ module.exports = function(server) {
       });
       con.query('CREATE DATABASE '+req.query.dbName,(err,rs)=>{
         con = mysql.createConnection({
-          host: "localhost",
-          user: "root",
-          password: "",
+          host: DataSource.jdm_main.host,
+          user: DataSource.jdm_main.user,
+          password: DataSource.jdm_main.password,
           database: req.query.dbName,
           multipleStatements: true
         });

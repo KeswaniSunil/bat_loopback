@@ -197,17 +197,20 @@ module.exports = function (Purchase) {
             Purchase.find({ include: ['supplier'], order: orderby, where: { and: [{ billbookId: filter.billbookId }, { isenabled: 1 }, { billdate: { between: [filter.startdate, filter.enddate] } }] } }, (err, order) => {
                 //console.log(order)
                 let records = []
-                for (let i = 0; i < order.length; i++) {
-                    let supplier = order[i].supplier()
-                    let name = supplier.name
-                    let date = new Date(order[i].billdate).getDate() + "/" + (new Date(order[i].billdate).getMonth() + 1) + "/" + new Date(order[i].billdate).getFullYear()
-                    if (new String(order[i].billno).toLowerCase().search(search.toLowerCase()) > -1 || name.toLowerCase().search(search.toLowerCase()) > -1 || new String(order[i].totalamount).search(search) > -1 || date.search(search) > -1) {
-                        records.push(order[i])
-                    }
-                    if (i == order.length - 1) {
-                        resolve(records)
+                if(order.length > 0) {
+                    for (let i = 0; i < order.length; i++) {
+                        let supplier = order[i].supplier()
+                        let name = supplier.name
+                        let date = new Date(order[i].billdate).getDate() + "/" + (new Date(order[i].billdate).getMonth() + 1) + "/" + new Date(order[i].billdate).getFullYear()
+                        if (new String(order[i].billno).toLowerCase().search(search.toLowerCase()) > -1 || name.toLowerCase().search(search.toLowerCase()) > -1 || new String(order[i].totalamount).search(search) > -1 || date.search(search) > -1) {
+                            records.push(order[i])
+                        }
+                        if (i == order.length - 1) {
+                            resolve(records)
+                        }
                     }
                 }
+                else resolve(records)
             })
         })
         total = await promise

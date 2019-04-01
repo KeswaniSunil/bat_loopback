@@ -21,15 +21,18 @@ module.exports = function (Taxes) {
       Taxes.find({ order: orderby, where: { and: [{ isenabled: 1 }] } }, (err, tax) => {
         //console.log(order)
         let records = []
-        for (let i = 0; i < tax.length; i++) {
-          if (new String(tax[i].name).trim().toLowerCase().search(search.trim().toLowerCase()) > -1 ||
-            new String(tax[i].percentage).trim().toLowerCase().search(search.trim().toLowerCase()) > -1) {
-            records.push(tax[i])
-          }
-          if (i == tax.length - 1) {
-            resolve(records)
+        if(tax.length > 0){
+          for (let i = 0; i < tax.length; i++) {
+            if (new String(tax[i].name).trim().toLowerCase().search(search.trim().toLowerCase()) > -1 ||
+              new String(tax[i].percentage).trim().toLowerCase().search(search.trim().toLowerCase()) > -1) {
+              records.push(tax[i])
+            }
+            if (i == tax.length - 1) {
+              resolve(records)
+            }
           }
         }
+        else resolve(records)
       })
     })
     total = await promise

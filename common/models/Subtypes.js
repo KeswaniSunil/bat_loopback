@@ -72,16 +72,19 @@ module.exports = function (Subtypes) {
             Subtypes.find({ include:['type'], order: orderby, where: { and: [{ isenabled: 1 }] } }, (err, subtype) => {
                 //console.log(order)
                 let records = []
-                for (let i = 0; i < subtype.length; i++) {
-                    let type = subtype[i].type().name
-                    if (new String(subtype[i].name).trim().toLowerCase().search(search.trim().toLowerCase()) > -1 ||
-                        type.trim().toLowerCase().search(search.trim().toLowerCase()) > -1 ) {
-                        records.push(subtype[i])
-                    }
-                    if (i == subtype.length - 1) {
-                        resolve(records)
+                if(subtype.length > 0) {
+                    for (let i = 0; i < subtype.length; i++) {
+                        let type = subtype[i].type().name
+                        if (new String(subtype[i].name).trim().toLowerCase().search(search.trim().toLowerCase()) > -1 ||
+                            type.trim().toLowerCase().search(search.trim().toLowerCase()) > -1 ) {
+                            records.push(subtype[i])
+                        }
+                        if (i == subtype.length - 1) {
+                            resolve(records)
+                        }
                     }
                 }
+                else resolve(records)
             })
         })
         total = await promise

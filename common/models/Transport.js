@@ -69,15 +69,18 @@ module.exports = function(Transport) {
             Transport.find({ order: orderby, where: { and: [{ isenabled: 1 }] } }, (err, transport) => {
                 //console.log(order)
                 let records = []
-                for (let i = 0; i < transport.length; i++) {
-                    if (new String(transport[i].name).trim().toLowerCase().search(search.trim().toLowerCase()) > -1 ||
-                        new String(transport[i].vehicleno).trim().toLowerCase().search(search.trim().toLowerCase()) > -1 ) {
-                        records.push(transport[i])
-                    }
-                    if (i == transport.length - 1) {
-                        resolve(records)
+                if(transport.length > 0) {
+                    for (let i = 0; i < transport.length; i++) {
+                        if (new String(transport[i].name).trim().toLowerCase().search(search.trim().toLowerCase()) > -1 ||
+                            new String(transport[i].vehicleno).trim().toLowerCase().search(search.trim().toLowerCase()) > -1 ) {
+                            records.push(transport[i])
+                        }
+                        if (i == transport.length - 1) {
+                            resolve(records)
+                        }
                     }
                 }
+                else resolve(records)
             })
         })
         total = await promise

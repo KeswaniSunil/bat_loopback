@@ -64,18 +64,21 @@ module.exports = function (Customer) {
             Customer.find({ order:orderby, where: { and: [{ isenabled: 1 }] } }, (err, customer) => {
                 //console.log(order)
                 let records = []
-                for (let i = 0; i < customer.length; i++) {
-                    if (new String(customer[i].name).trim().toLowerCase().search(search.trim().toLowerCase()) > -1 || 
-                        new String(customer[i].mobile).search(search) > -1 || 
-                        new String(customer[i].totalamount).search(search) > -1 ||
-                        new String(customer[i].received).search(search) > -1 ||
-                        new String(parseFloat(customer[i].totalamount) - parseFloat(customer[i].received)).search(search) > -1) {
-                        records.push(customer[i])
-                    }
-                    if (i == customer.length - 1) {
-                        resolve(records)
+                if(customer.length > 0) {
+                    for (let i = 0; i < customer.length; i++) {
+                        if (new String(customer[i].name).trim().toLowerCase().search(search.trim().toLowerCase()) > -1 || 
+                            new String(customer[i].mobile).search(search) > -1 || 
+                            new String(customer[i].totalamount).search(search) > -1 ||
+                            new String(customer[i].received).search(search) > -1 ||
+                            new String(parseFloat(customer[i].totalamount) - parseFloat(customer[i].received)).search(search) > -1) {
+                            records.push(customer[i])
+                        }
+                        if (i == customer.length - 1) {
+                            resolve(records)
+                        }
                     }
                 }
+                else resolve(records)
             })
         })
         total = await promise

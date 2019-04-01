@@ -64,16 +64,19 @@ module.exports = function (Type) {
             Type.find({ include:['tax'], order: orderby, where: { and: [{ isenabled: 1 }] } }, (err, type) => {
                 //console.log(order)
                 let records = []
-                for (let i = 0; i < type.length; i++) {
-                    let tax = (type[i].taxId != '') ? type[i].tax().percentage+"" : "-"
-                    if (new String(type[i].name).trim().toLowerCase().search(search.trim().toLowerCase()) > -1 ||
-                        tax.trim().toLowerCase().search(search.trim().toLowerCase()) > -1 ) {
-                        records.push(type[i])
-                    }
-                    if (i == type.length - 1) {
-                        resolve(records)
+                if(type.length > 0){
+                    for (let i = 0; i < type.length; i++) {
+                        let tax = (type[i].taxId != '') ? type[i].tax().percentage+"" : "-"
+                        if (new String(type[i].name).trim().toLowerCase().search(search.trim().toLowerCase()) > -1 ||
+                            tax.trim().toLowerCase().search(search.trim().toLowerCase()) > -1 ) {
+                            records.push(type[i])
+                        }
+                        if (i == type.length - 1) {
+                            resolve(records)
+                        }
                     }
                 }
+                else resolve(records)
             })
         })
         total = await promise

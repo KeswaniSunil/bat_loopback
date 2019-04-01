@@ -14,22 +14,21 @@ module.exports = function(Config) {
             Config.find({fields:['dbName'], where:{name:username}},(err, Configs)=>{
                 if(Configs.length > 0)
                 {
-                    var DataSource = require('loopback-datasource-juggler').DataSource;
-
-                    var sqlConnector = require('loopback-connector-mysql');
-
+                    let DataSource = require('../../server/datasources') 
                     var settings = {
-                        "host": "localhost",
-                        "port": 3306,
+                        "host": DataSource.jdm_main.host,
+                        "port": DataSource.jdm_main.port,
                         "database": Configs[0].dbName,
-                        "user": "root",
-                        "password": "",
+                        "user": DataSource.jdm_main.user,
+                        "password": DataSource.jdm_main.password,
                         "name": Configs[0].dbName,
-                        "url": "",
+                        "url": DataSource.jdm_main.url,
                         "connector": require('loopback-connector-mysql'),
                     };          // Hold a reference to dataSource
                     var app = require('../../server/server')
                     app.dataSource(''+Configs[0].dbName,settings);
+                    //var DataSources = require('loopback-datasource-juggler').DataSource;
+                    //console.log(DataSources)
                     resolve("true")
                 }
                 else {

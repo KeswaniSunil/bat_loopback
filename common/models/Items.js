@@ -65,20 +65,23 @@ module.exports = function (Items) {
             Items.find({ include:['unit'], order: orderby, where: { and: [{ isenabled: 1 }] } }, (err, item) => {
                 //console.log(order)
                 let records = []
-                for (let i = 0; i < item.length; i++) {
-                    let unit = item[i].unit().title
-                    if (new String(item[i].name).trim().toLowerCase().search(search.trim().toLowerCase()) > -1 ||
-                        unit.trim().toLowerCase().search(search.trim().toLowerCase()) > -1 ||
-                        new String(item[i].price).search(search.trim()) > -1 ||
-                        new String(item[i].totalstock).search(search.trim()) > -1 ||
-                        new String(item[i].usedstock).search(search.trim()) > -1 ||
-                        new String(parseFloat(item[i].totalstock) - parseFloat(item[i].usedstock)).search(search.trim()) > -1) {
-                        records.push(item[i])
-                    }
-                    if (i == item.length - 1) {
-                        resolve(records)
+                if(item.length > 0) {
+                    for (let i = 0; i < item.length; i++) {
+                        let unit = item[i].unit().title
+                        if (new String(item[i].name).trim().toLowerCase().search(search.trim().toLowerCase()) > -1 ||
+                            unit.trim().toLowerCase().search(search.trim().toLowerCase()) > -1 ||
+                            new String(item[i].price).search(search.trim()) > -1 ||
+                            new String(item[i].totalstock).search(search.trim()) > -1 ||
+                            new String(item[i].usedstock).search(search.trim()) > -1 ||
+                            new String(parseFloat(item[i].totalstock) - parseFloat(item[i].usedstock)).search(search.trim()) > -1) {
+                            records.push(item[i])
+                        }
+                        if (i == item.length - 1) {
+                            resolve(records)
+                        }
                     }
                 }
+                else resolve(records)
             })
         })
         total = await promise
@@ -108,4 +111,5 @@ module.exports = function (Items) {
         returns: [{ arg: "total", type: "number" }, { arg: "data", type: 'array' }],
         "http": { "verb": "get", "path": "/getItems" },
     })
+
 };

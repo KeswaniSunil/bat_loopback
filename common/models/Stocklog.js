@@ -98,29 +98,39 @@ module.exports = function (Stocklog) {
     let field = filter.sort
     let ascdesc = (filter.descending == 'true') ? 'desc' : 'asc'
     let orderby = (field == 'itemname' || field == 'billno') ? null : field + ' ' + ascdesc
+    let where = (filter.purchase == 'true' || filter.sale == 'true') 
+        ? ((filter.purchase == 'true' && filter.sale == 'true') 
+          ? { and: [{ isenabled: 1 }, { date: { between: [filter.startdate, filter.enddate] } }] } 
+          : ((filter.purchase == 'true') 
+            ? { and: [{ isenabled: 1 },{orderId: null}, { date: { between: [filter.startdate, filter.enddate] } }] }
+            : { and: [{ isenabled: 1 }, {orderId:{neq:null}}, { date: { between: [filter.startdate, filter.enddate] } }] })) 
+        : { and: [{ isenabled: 2 }, { date: { between: [filter.startdate, filter.enddate] } }] }
     let promise = new Promise((resolve, reject) => {
-      Stocklog.find({ include: ['purchase', { 'order': "billbook" }, 'item'], order: orderby, where: { and: [{ isenabled: 1 }, { date: { between: [filter.startdate, filter.enddate] } }] } }, (err, stocklog) => {
+      Stocklog.find({ include: ['purchase', { 'order': "billbook" }, 'item'], order: orderby, where: where }, (err, stocklog) => {
         //console.log(stocklog)
         let records = []
-        for (let i = 0; i < stocklog.length; i++) {
-          let purchase = stocklog[i].purchase()
-          let order = stocklog[i].order()
-          let item = stocklog[i].item()
-          let itemname = item.name
-          let date = new Date(stocklog[i].date).getDate() + "/" + (new Date(stocklog[i].date).getMonth() + 1) + "/" + new Date(stocklog[i].date).getFullYear()
-          let billno = (stocklog[i].purchaseId != null || stocklog[i].orderId != null) ? ((stocklog[i].purchaseId != null) ? purchase.billno + "" : (order.billbook().prefix + "" + order.billno)) : "-"
-          if (billno.toLowerCase().search(search.toLowerCase()) > -1 ||
-            itemname.toLowerCase().search(search.toLowerCase()) > -1 ||
-            new String(stocklog[i].price).search(search) > -1 ||
-            new String(stocklog[i].quantity).search(search) > -1 ||
-            new String(stocklog[i].notes).search(search) > -1 ||
-            date.search(search) > -1) {
-            records.push(stocklog[i])
-          }
-          if (i == stocklog.length - 1) {
-            resolve(records)
+        if(stocklog.length > 0) {
+          for (let i = 0; i < stocklog.length; i++) {
+            let purchase = stocklog[i].purchase()
+            let order = stocklog[i].order()
+            let item = stocklog[i].item()
+            let itemname = item.name
+            let date = new Date(stocklog[i].date).getDate() + "/" + (new Date(stocklog[i].date).getMonth() + 1) + "/" + new Date(stocklog[i].date).getFullYear()
+            let billno = (stocklog[i].purchaseId != null || stocklog[i].orderId != null) ? ((stocklog[i].purchaseId != null) ? purchase.billno + "" : (order.billbook().prefix + "" + order.billno)) : "-"
+            if (billno.toLowerCase().search(search.toLowerCase()) > -1 ||
+              itemname.toLowerCase().search(search.toLowerCase()) > -1 ||
+              new String(stocklog[i].price).search(search) > -1 ||
+              new String(stocklog[i].quantity).search(search) > -1 ||
+              new String(stocklog[i].notes).search(search) > -1 ||
+              date.search(search) > -1) {
+              records.push(stocklog[i])
+            }
+            if (i == stocklog.length - 1) {
+              resolve(records)
+            }
           }
         }
+        else resolve(records)
       })
     })
     total = await promise
@@ -161,4 +171,79 @@ module.exports = function (Stocklog) {
     returns: [{ arg: "total", type: "number" }, { arg: "data", type: 'array' }],
     "http": { "verb": "get", "path": "/getStocklogs" },
   })
+  Stocklog.getTotalStock = async function (filter) {
+    //let Purchaseitems = app.models.Purchaseitems
+    let limit = (filter.limit != null) ? filter.limit : null
+    let skip = (filter.skip != null) ? filter.skip : 0
+    let search = (filter.search != null) ? filter.search : ""
+    let total = []
+    let field = filter.sort
+    let ascdesc = (filter.descending == 'true') ? 'desc' : 'asc'
+    let orderby = (field == 'billno' || field == 'name') ? null : field+' '+ascdesc
+    let promise = new Promise((resolve, reject) => {
+        Stocklog.find({include: [{ 'purchase': "supplier" },{ 'order': "customer"},{ 'order': "billbook"}], order:orderby, where: { and: [{ isenabled: 1 },{ date: { between: [filter.startdate, filter.enddate] } },{itemId:filter.id}] } }, (err, totalStock) => {
+            let records = []
+            console.log(totalStock)
+            if(totalStock.length > 0) {
+                for (let i = 0; i < totalStock.length; i++) {
+                  let billno = (totalStock[i].purchaseId != null || totalStock[i].orderId != null) ? ((totalStock[i].purchaseId != null) ? purchase.billno + "" : (order.billbook().prefix + "" + order.billno)) : "-"
+                  let namee=(totalStock[i].purchaseId != null || totalStock[i].orderId != null) ? ((totalStock[i].purchaseId != null) ? purchase.supplier().name + "" : order.customer().name ) : "-"
+                  let date = new Date(totalStock[i].date).getDate() + "/" + (new Date(totalStock[i].date).getMonth() + 1) + "/" + new Date(totalStock[i].date).getFullYear()
+                    if (billno.toLowerCase().search(search.toLowerCase()) > -1 ||
+                        namee.toLowerCase().search(search.toLowerCase()) > -1 ||
+                        new String(totalStock[i].price).search(search) > -1 ||
+                        new String(totalStock[i].quantity).search(search) > -1 ||
+                        new String(stocklog[i].notes).search(search) > -1 ||
+                        date.search(search) > -1) {
+                          records.push(totalStock[i])
+                    }
+                    if (i == totalStock.length - 1) {
+                        resolve(records)
+                    }
+                }
+            }
+            else resolve(records)
+        })
+    })
+    total = await promise
+    console.log(total.length)
+    if (limit == -1) limit = total.length
+    if (field == 'name') {
+      total.sort(function (a, b) {
+        let name = (a.purchaseId != null || a.orderId != null) ? ((a.purchaseId != null) ? a.purchase().supplier().name + "" : a.order().customer().name) : "-"
+        let name1 = (b.purchaseId != null ) ? b.purchase().supplier().name + "" : "-"
+        if (new String(name).trim().toLowerCase() < new String(name1).trim().toLowerCase()) {
+          if (ascdesc == 'asc') return -1;
+          else return 1
+        }
+        if (new String(name).trim().toLowerCase() > new String(name1).trim().toLowerCase()) {
+          if (ascdesc == 'asc') return 1;
+          else return -1
+        }
+        return 0;
+      });
+    }
+    else if (field == 'billno') {
+      total.sort(function (a, b) {
+        let billno = (a.purchaseId != null || a.orderId != null) ? ((a.purchaseId != null) ? a.purchase().billno + "" : a.order().billbook().prefix + "" + a.order().billno) : "-"
+        let billno1 = (b.purchaseId != null || b.orderId != null) ? ((b.purchaseId != null) ? b.purchase().billno + "" : b.order().billbook().prefix + "" + b.order().billno) : "-"
+        if (new String(billno).trim().toLowerCase() < new String(billno1).trim().toLowerCase()) {
+          if (ascdesc == 'asc') return -1;
+          else return 1
+        }
+        if (new String(billno).trim().toLowerCase() > new String(billno1).trim().toLowerCase()) {
+          if (ascdesc == 'asc') return 1;
+          else return -1
+        }
+        return 0;
+      });
+    }
+    for (let i = 0; i < total.length; i++) total[i].index = i
+    return [total.length, total.splice(skip, limit)]
+}
+Stocklog.remoteMethod('getTotalStock', {
+    accepts: { arg: 'filter', type: 'any' },
+    returns: [{ arg: "total", type: "number" }, { arg: "data", type: 'array' }],
+    "http": { "verb": "get", "path": "/getTotalStock" },
+})
 };
