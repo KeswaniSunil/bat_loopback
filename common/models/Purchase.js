@@ -191,10 +191,13 @@ module.exports = function (Purchase) {
         let search = (filter.search != null) ? filter.search : ""
         let total = []
         let field = filter.sort
+        let where = (filter.supplierId != null) 
+            ? {and:[{supplierId:filter.supplierId},{isenabled:1},{billdate:{between:[filter.startdate,filter.enddate]}}]} 
+            : {and:[{isenabled:1},{billdate:{between:[filter.startdate,filter.enddate]}}]}
         let ascdesc = (filter.descending == 'true') ? 'desc' : 'asc'
         let orderby = (field == 'name') ? null : field + ' ' + ascdesc
         let promise = new Promise((resolve, reject) => {
-            Purchase.find({ include: ['supplier'], order: orderby, where: { and: [{ billbookId: filter.billbookId }, { isenabled: 1 }, { billdate: { between: [filter.startdate, filter.enddate] } }] } }, (err, order) => {
+            Purchase.find({ include: ['supplier'], order: orderby, where: where }, (err, order) => {
                 //console.log(order)
                 let records = []
                 if(order.length > 0) {

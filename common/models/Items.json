@@ -15,7 +15,7 @@
       "type": "string",
       "id": 1,
       "required": false,
-      "length": 35,
+      "length": 36,
       "precision": null,
       "scale": null,
       "mysql": {

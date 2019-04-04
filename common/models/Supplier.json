@@ -15,13 +15,13 @@
       "type": "string",
       "id": 1,
       "required": false,
-      "length": 35,
+      "length": 36,
       "precision": null,
       "scale": null,
       "mysql": {
         "columnName": "id",
         "dataType": "varchar",
-        "dataLength": 35,
+        "dataLength": 36,
         "dataPrecision": null,
         "dataScale": null,
         "nullable": "N"
@@ -176,6 +176,20 @@
         "dataPrecision": 10,
         "dataScale": 0,
         "nullable": "N"
+      }
+    },
+    "balance": {
+      "type": "number",
+      "required": false,
+      "length": null,
+      "precision": 22,
+      "scale": 0,
+      "mysql": {
+        "columnName": "balance",
+        "dataType": "double",
+        "dataLength": null,
+        "dataPrecision": 22,
+        "dataScale": 0
       }
     },
     "isenabled": {

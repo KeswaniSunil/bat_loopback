@@ -263,10 +263,13 @@ module.exports = function(Orders) {
         let search = (filter.search != null) ? filter.search : ""
         let total = []
         let field = filter.sort
+        let where = (filter.customerId != null) 
+            ? {and:[{billbookId:filter.billbookId},{customerId:filter.customerId},{isenabled:1},{billdate:{between:[filter.startdate,filter.enddate]}}]} 
+            : {and:[{billbookId:filter.billbookId},{isenabled:1},{billdate:{between:[filter.startdate,filter.enddate]}}]}
         let ascdesc = (filter.descending == 'true') ? 'desc' : 'asc'
         let orderby = (field == 'name' || field == 'billno') ? null : field+' '+ascdesc
         let promise = new Promise((resolve, reject)=>{
-            Orders.find({include:['customer','billbook'],order:orderby,where:{and:[{billbookId:filter.billbookId},{isenabled:1},{billdate:{between:[filter.startdate,filter.enddate]}}]}},(err, order)=>{
+            Orders.find({include:['customer','billbook'],order:orderby,where:where},(err, order)=>{
                 //console.log(order)
                 let records=[]
                 if(order.length > 0) {

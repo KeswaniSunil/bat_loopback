@@ -15,13 +15,13 @@
       "type": "string",
       "id": true,
       "required": false,
-      "length": 35,
+      "length": 36,
       "precision": null,
       "scale": null,
       "mysql": {
         "columnName": "id",
         "dataType": "varchar",
-        "dataLength": 35,
+        "dataLength": 36,
         "dataPrecision": null,
         "dataScale": null,
         "nullable": "N"
