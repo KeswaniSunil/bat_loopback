@@ -6,7 +6,7 @@ const cron = require("node-cron");
 let nodemailer = require("nodemailer");
 module.exports = function(server) {
   // Install a `/` route that returns server status
-  let DataSource = require('../datasources')
+  /*let DataSource = require('../datasources')
   
   let con = mysql.createConnection({
     host: DataSource.jdm_main.host,
@@ -20,13 +20,13 @@ module.exports = function(server) {
     password: DataSource.jdm_main.password,
     database: DataSource.jdm_main.database
     //multipleStatements: true
-  });
+  });*/
   /********* Backup **********/
-  let transporter = nodemailer.createTransport({
+  /*let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
       user: "jbhackers142@gmail.com",
-      pass: "falgun2998"
+      pass: "******"
     }
   });
   cron.schedule("32 15 * * *", function () {
@@ -68,11 +68,11 @@ module.exports = function(server) {
         }
       }
     })
-  });
+  });*/
 
   var router = server.loopback.Router();
   router.get('/', server.loopback.status());
-  router.get('/:username/call',(req, res, next)=>{
+  /*router.get('/:username/call',(req, res, next)=>{
     //console.log(req.params)
     if(req.query.dbName == null)
     {
@@ -104,6 +104,6 @@ module.exports = function(server) {
         
       })
     }
-  })
+  })*/
   server.use(router);
 };
