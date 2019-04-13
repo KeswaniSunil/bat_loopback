@@ -89,13 +89,13 @@
     "street": {
       "type": "string",
       "required": false,
-      "length": 150,
+      "length": 4294967295,
       "precision": null,
       "scale": null,
       "mysql": {
         "columnName": "street",
-        "dataType": "varchar",
-        "dataLength": 150,
+        "dataType": "longtext",
+        "dataLength": 4294967295,
         "dataPrecision": null,
         "dataScale": null
       }
@@ -184,6 +184,20 @@
         "dataScale": 0
       }
     },
+    "closingbal": {
+      "type": "number",
+      "required": false,
+      "length": null,
+      "precision": 22,
+      "scale": 0,
+      "mysql": {
+        "columnName": "closingbal",
+        "dataType": "double",
+        "dataLength": null,
+        "dataPrecision": 22,
+        "dataScale": 0
+      }
+    },
     "totalamount": {
       "type": "number",
       "required": false,
@@ -209,6 +223,20 @@
         "dataType": "double",
         "dataLength": null,
         "dataPrecision": 22,
+        "dataScale": 0
+      }
+    },
+    "noofdays": {
+      "type": "number",
+      "required": false,
+      "length": null,
+      "precision": 10,
+      "scale": 0,
+      "mysql": {
+        "columnName": "noofdays",
+        "dataType": "int",
+        "dataLength": null,
+        "dataPrecision": 10,
         "dataScale": 0
       }
     },

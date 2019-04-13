@@ -18,8 +18,8 @@ module.exports = function(Transport) {
                 {
                     if(names != null)
                     {
-                        if(/^[A-Za-z0-9- ]*$/.test(names) == true)
-                        {
+                        //if(/^[A-Za-z0-9- ]*$/.test(names) == true)
+                        //{
                             for(var i=0;i<Transports.length;i++)
                             {
                                 if(Transports[i].name.toLowerCase().search(names.toLowerCase()) > -1)
@@ -30,7 +30,7 @@ module.exports = function(Transport) {
                                     j++
                                 }
                             }
-                        }
+                        //}
                     }    
                     resolve(values)
                 }

@@ -1,4 +1,5 @@
 'use strict';
+const app = require("../../server/server")
 const uuidV4 = require('uuid/v4');
 module.exports = function (Supplier) {
     Supplier.observe('before save', function (ctx, cb) {
@@ -16,7 +17,7 @@ module.exports = function (Supplier) {
                 let j = 0
                 if (Suppliers.length > 0) {
                     if (names != null) {
-                        if (/^[A-Za-z0-9- ]*$/.test(names) == true) {
+                        //if (/^[A-Za-z0-9- ]*$/.test(names) == true) {
                             for (var i = 0; i < Suppliers.length; i++) {
                                 if (Suppliers[i].name.toLowerCase().replace(/ /g, "").search(names.toLowerCase().replace(/ /g, "")) > -1) {
                                     values[j] = new Object()
@@ -25,7 +26,7 @@ module.exports = function (Supplier) {
                                     j++
                                 }
                             }
-                        }
+                        //}
                     }
                     resolve(values)
                 }
@@ -70,6 +71,7 @@ module.exports = function (Supplier) {
                             new String(supplier[i].mobile).search(search) > -1 ||
                             new String(supplier[i].totalamount).search(search) > -1 ||
                             new String(supplier[i].paid).search(search) > -1 ||
+                            new String(supplier[i].closingbal).search(search) > -1 ||                            
                             new String(parseFloat(supplier[i].totalamount) - parseFloat(supplier[i].paid)).search(search) > -1) {
                             records.push(supplier[i])
                         }
@@ -107,5 +109,116 @@ module.exports = function (Supplier) {
         accepts: { arg: 'filter', type: 'any' },
         returns: [{ arg: "total", type: "number" }, { arg: "data", type: 'array' }],
         "http": { "verb": "get", "path": "/getSuppliers" },
+    })
+
+    Supplier.settlement = async function (supplierId, amount, pending, userId) {
+        let promise = new Promise(resolve=>{
+            let Purchases = app.models.Purchase
+            let supplierlogs=app.models.Supplierlog
+            let Purchasepayment = app.models.Purchasepayment
+            let closingamount = parseFloat(pending) >= 0 ? 0 : (parseFloat(pending) * -1)
+            Supplier.find({where:{id:supplierId}},(err,supplier)=>{
+                Supplier.updateAll({id:supplierId},{paid:parseFloat(supplier[0].paid) + (amount-closingamount)},(err,cust)=>{
+                    let promise1 = new Promise(resolve2=>{
+                        if(closingamount > 0){
+                            Supplier.updateAll({id:supplierId},{closingbal:parseFloat(supplier[0].closingbal) + closingamount},(err,cust1)=>{
+                                supplierlogs.create({
+                                    supplierId:supplierId,
+                                    balance:closingamount,
+                                    notes:'Balance Added',
+                                    date:new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString(),
+                                    isenabled:1,
+                                    createdon:new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString(),
+                                    modifiedon:new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString(),
+                                    createdById:userId
+                                },(err1,supp2)=>{
+                                resolve2()
+                            })
+                            })
+                        }
+                        else resolve2()
+                    })
+                    promise1.then(resolve2=>{
+                        Purchases.find({where:{and:[{supplierId:supplierId},{pendingamount:{gt:0}},{isenabled:1}]},order:'billdate asc'},(err,purchase)=>{
+                            if(purchase.length > 0) {
+                                let amount1 = amount - closingamount
+                                for(let i=0, p = Promise.resolve();i<purchase.length;i++)
+                                {
+                                    p = p.then(_ => new Promise(resolve1 =>{
+                                            let pendingamount = amount1-parseFloat(purchase[i].pendingamount)
+                                            if(pendingamount >= 0)
+                                            {
+                                                Purchases.updateAll({id:purchase[i].id},{paidamount:purchase[i].totalamount,pendingamount:0},(err,purchaseupdate)=>{
+                                                    Purchasepayment.find({where:{purchaseId:purchase[i].id},order:'series desc',limit:1},(err,purchasepayment)=>{
+                                                        let series=purchasepayment.length > 0 ? parseInt(purchasepayment[0].series) + 1 : 0;                                                        
+                                                        Purchasepayment.create({
+                                                            purchaseId:purchase[i].id,
+                                                            paymentmethod:'Cash',
+                                                            paidamount:purchase[i].pendingamount,
+                                                            paymentdate:(new Date()).toISOString().substr(0,10),
+                                                            notes:"",
+                                                            series:series,
+                                                            createdon:new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString(),
+                                                            modifiedon:new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString(),
+                                                            createdById:userId,
+                                                            modifiedById:userId
+                                                        },(err,op)=>{
+                                                            //if(err) console.log(err)
+                                                            amount1 -= purchase[i].pendingamount
+                                                            //console.log(amount1+" "+i+" 23 ")
+                                                            if(amount1 == 0) resolve("done")
+                                                            else resolve1()
+                                                        })
+                                                    })
+                                                })
+                                            }
+                                            else {
+                                                Purchases.updateAll({id:purchase[i].id},{paidamount:parseFloat(purchase[i].paidamount)+amount1,pendingamount:pendingamount*-1},(err,purchaseupdate)=>{
+                                                    Purchasepayment.find({where:{purchaseId:purchase[i].id},order:'series desc',limit:1},(err,purchasepayment)=>{
+                                                        let series=purchasepayment.length > 0 ? parseInt(purchasepayment[0].series) + 1 : 0;
+                                                        Purchasepayment.create({
+                                                            purchaseId:purchase[i].id,
+                                                            paymentmethod:'Cash',
+                                                            paidamount:amount1,
+                                                            paymentdate:new Date().toISOString().substr(0,10),
+                                                            notes:"",
+                                                            series:series,
+                                                            createdon:new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString(),
+                                                            modifiedon:new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString(),
+                                                            createdById:userId,
+                                                            modifiedById:userId
+                                                        },(err,op)=>{
+                                                            //if(err) console.log(err)
+                                                            amount1 -= amount1
+                                                            //console.log(amount1+" "+i+" 12 ")
+                                                            if(amount1 == 0) resolve("done")
+                                                            else resolve1()
+                                                        })
+                                                    })
+                                                })
+                                            }
+                                        }
+                                    ))
+                                }
+                            }
+                            else resolve("done")
+                        })
+                    })
+                })
+            })
+        })
+        let  p = await promise
+        //console.log(p)
+        return p
+    }
+    Supplier.remoteMethod('settlement', {
+        accepts: [
+                    { arg: 'supplierId', type: 'any' },
+                    { arg: 'amount', type: 'any' },
+                    { arg: 'pending', type: 'any' },
+                    { arg: 'userId', type: 'any'}
+                ],
+        returns: { arg: "status", type: "string" },
+        "http": { "verb": "post", "path": "/settlement" },
     })
 };

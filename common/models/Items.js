@@ -16,7 +16,7 @@ module.exports = function (Items) {
                 let j = 0
                 if (Item.length > 0) {
                     if (names != null) {
-                        if (/^[A-Za-z0-9- ]*$/.test(names) == true) {
+                        //if (/^[A-Za-z0-9- ]*$/.test(names) == true) {
                             for (var i = 0; i < Item.length; i++) {
                                 //console.log(Item[i])
                                 if (Item[i].name.toLowerCase().replace(/ /g, "").search(names.toLowerCase().replace(/ /g, "")) > -1) {
@@ -26,7 +26,7 @@ module.exports = function (Items) {
                                     j++
                                 }
                             }
-                        }
+                        //}
                     }
                     resolve(values)
                 }

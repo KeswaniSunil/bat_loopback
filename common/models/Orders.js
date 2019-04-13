@@ -183,7 +183,7 @@ module.exports = function(Orders) {
                                 {
                                     Items.find({where:{id:itemId[i].itemId}},(err, item)=>{
                                         let usedstock = parseInt(item[0].usedstock)
-                                        usedstock += itemId[i].quantity
+                                        usedstock += parseInt(itemId[i].quantity)
                                         Items.updateAll({id:itemId[i].itemId},{usedstock:usedstock},(err,itemstatus)=>{
                                             if(i == (itemId.length - 1)) resolve("done")
                                             else resolve1()

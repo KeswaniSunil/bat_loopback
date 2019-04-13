@@ -115,7 +115,7 @@ module.exports = function (Purchase) {
                             if (itemId[i].id == null) {
                                 Items.find({ where: { id: itemId[i].itemId } }, (err, item) => {
                                     let totalstock = parseInt(item[0].totalstock)
-                                    totalstock += itemId[i].quantity
+                                    totalstock += parseInt(itemId[i].quantity)
                                     Items.updateAll({ id: itemId[i].itemId }, { totalstock: totalstock }, (err, itemstatus) => {
                                         if (i == (itemId.length - 1)) resolve("done")
                                         else resolve1()

@@ -17,7 +17,7 @@ module.exports = function (Subtypes) {
                     let j = 0
                     if (Subtypes.length > 0) {
                         if (names != null) {
-                            if (/^[A-Za-z0-9- ]*$/.test(names) == true) {
+                            //if (/^[A-Za-z0-9- ]*$/.test(names) == true) {
                                 for (var i = 0; i < Subtypes.length; i++) {
                                     if (Subtypes[i].name.toLowerCase().search(names.toLowerCase()) > -1) {
                                         values[j] = new Object()
@@ -26,7 +26,7 @@ module.exports = function (Subtypes) {
                                         j++
                                     }
                                 }
-                            }
+                            //}
                         }
                         resolve(values)
                     }

@@ -108,6 +108,30 @@
     "dataSource": "db1",
     "public": true
   },
+  "Customerlog": {
+    "dataSource": "db1",
+    "public": true
+  },
+  "Customergroup": {
+    "dataSource": "db1",
+    "public": true
+  },
+  "Smsgroup": {
+    "dataSource": "db1",
+    "public": true
+  },
+  "Smstemplate": {
+    "dataSource": "db1",
+    "public": true
+  },
+  "Smslog": {
+    "dataSource": "db1",
+    "public": true
+  },
+  "Supplierlog": {
+    "dataSource": "db1",
+    "public": true
+  },
   "Subtypes": {
     "dataSource": "db1",
     "public": true

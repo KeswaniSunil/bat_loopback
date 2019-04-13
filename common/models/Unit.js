@@ -18,8 +18,8 @@ module.exports = function(Unit) {
             {
                 if(names != null)
                 {
-                    if(/^[A-Za-z0-9- ]*$/.test(names) == true)
-                    {
+                    //if(/^[A-Za-z0-9- ]*$/.test(names) == true)
+                    //{
                         for(var i=0;i<Units.length;i++)
                         {
                             if(Units[i].title.toLowerCase().search(names.toLowerCase()) > -1)
@@ -30,7 +30,7 @@ module.exports = function(Unit) {
                                 j++
                             }
                         }
-                    }
+                    //}
                 }    
                 resolve(values)
             }

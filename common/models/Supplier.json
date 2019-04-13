@@ -91,13 +91,13 @@
     "street": {
       "type": "string",
       "required": false,
-      "length": 100,
+      "length": 4294967295,
       "precision": null,
       "scale": null,
       "mysql": {
         "columnName": "street",
-        "dataType": "varchar",
-        "dataLength": 100,
+        "dataType": "longtext",
+        "dataLength": 4294967295,
         "dataPrecision": null,
         "dataScale": null,
         "nullable": "N"
@@ -186,6 +186,20 @@
       "scale": 0,
       "mysql": {
         "columnName": "balance",
+        "dataType": "double",
+        "dataLength": null,
+        "dataPrecision": 22,
+        "dataScale": 0
+      }
+    },
+    "closingbal": {
+      "type": "number",
+      "required": false,
+      "length": null,
+      "precision": 22,
+      "scale": 0,
+      "mysql": {
+        "columnName": "closingbal",
         "dataType": "double",
         "dataLength": null,
         "dataPrecision": 22,
