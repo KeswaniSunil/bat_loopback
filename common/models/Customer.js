@@ -220,4 +220,45 @@ module.exports = function (Customer) {
         returns: { arg: "status", type: "string" },
         "http": { "verb": "post", "path": "/settlement" },
     })
+    Customer.getRecievables = async function (filter) {
+        let total = []
+        let promise = new Promise((resolve, reject) => {
+            Customer.find({ where: { and: [{ isenabled: 1},{totalamount:{gt:0}}] },fields: {totalamount: true, received: true,} }, (err, customer) => {
+                //console.log(order)
+                let records = [{
+                    total:0,
+                    recieved:0
+                }]
+                let amt=[]
+                let rec=[]
+                if(customer.length > 0) {
+                    let promise1 = new Promise((resolve1, reject1) => {
+                        for (let i = 0, p = Promise.resolve(); i < customer.length; i++) {
+                            p = p.then(_ => new Promise(resolve1 => {}))
+                            amt.push(customer[i].totalamount)
+                            rec.push(customer[i].received)
+                        if (i == customer.length - 1) {
+                            resolve1()
+                        }
+                    }
+                    });
+              promise1.then((resolve1) => {
+                const reducer = (accumulator, currentValue) => accumulator + currentValue;
+                records[0].total= amt.reduce(reducer);
+                records[0].recieved= rec.reduce(reducer);
+                    if(records[0].total > 0){
+                        resolve(records)
+                    }
+              });                    
+                }
+                else resolve(records)
+            })
+        })
+        total = await promise
+        return total
+    }
+    Customer.remoteMethod('getRecievables', {
+        returns: { arg: "total", type: 'array' },
+        "http": { "verb": "get", "path": "/getRecievables" },
+    })
 };

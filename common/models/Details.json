@@ -223,6 +223,66 @@
         "nullable": "N"
       }
     },
+    "sms": {
+      "type": "number",
+      "required": true,
+      "length": null,
+      "precision": 10,
+      "scale": null,
+      "mysql": {
+        "columnName": "sms",
+        "dataType": "tinyint",
+        "dataLength": null,
+        "dataPrecision": 10,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "route": {
+      "type": "number",
+      "required": false,
+      "length": null,
+      "precision": 10,
+      "scale": null,
+      "mysql": {
+        "columnName": "route",
+        "dataType": "int",
+        "dataLength": null,
+        "dataPrecision": 20,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "senderid": {
+      "type": "string",
+      "required": false,
+      "length": 6,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "senderid",
+        "dataType": "varchar",
+        "dataLength": 6,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "apikey": {
+      "type": "string",
+      "required": false,
+      "length": 50,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "apikey",
+        "dataType": "varchar",
+        "dataLength": 50,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
     "billuppertext": {
       "type": "string",
       "required": false,

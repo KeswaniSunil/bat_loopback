@@ -100,26 +100,32 @@ module.exports = function (Smslog) {
     })
     Smslog.sendsms = async function (data) {
         let Customer = app.models.Customer
+        let Details = app.models.Details
         let promise = new Promise((resolve, reject) => {
             let notsend = []
-            for(let i=0,p = Promise.resolve();i<data.length;i++)
-            {
-                p = p.then(_ => new Promise(resolve1 =>{
-                    Customer.find({where:{id:data[i].customerId}},(err,customer)=>{
-                        request("http://api.msg91.com/api/sendhttp.php?country=91&sender=ROYALC&route=1&mobiles="+customer[0].mobile+"&authkey=231732A7hQ0YMDpfZ5b72be23&message="+encodeURIComponent(data[i].content),function(err3,response1,body1){
-                            if(!err3 && response1.statusCode == 200){
-                                if(i == data.length - 1) resolve(notsend)
-                                else resolve1()
-                            }
-                            else {
-                                notsend.push(i)
-                                if(i == data.length - 1) resolve(notsend)
-                                else resolve1()
-                            }
-                        });
-                    })
-                }))
-            }
+            Details.find({},(err,details)=>{
+                if(details[0].sms){
+                    for(let i=0,p = Promise.resolve();i<data.length;i++)
+                    {
+                        p = p.then(_ => new Promise(resolve1 =>{
+                            Customer.find({where:{id:data[i].customerId}},(err,customer)=>{
+                                request("http://api.msg91.com/api/sendhttp.php?country=91&sender="+new String(details[0].senderid).toUpperCase()+"&route="+details[0].route+"&mobiles="+customer[0].mobile+"&authkey="+details[0].apikey+"&message="+encodeURIComponent(data[i].content),function(err3,response1,body1){
+                                    if(!err3 && response1.statusCode == 200){
+                                        if(i == data.length - 1) resolve(notsend)
+                                        else resolve1()
+                                    }
+                                    else {
+                                        notsend.push(i)
+                                        if(i == data.length - 1) resolve(notsend)
+                                        else resolve1()
+                                    }
+                                });
+                            })
+                        }))
+                    }
+                }
+                else resolve(notsend)
+            })
         })
         let d = await promise
         return d

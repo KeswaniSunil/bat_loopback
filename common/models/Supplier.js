@@ -221,4 +221,45 @@ module.exports = function (Supplier) {
         returns: { arg: "status", type: "string" },
         "http": { "verb": "post", "path": "/settlement" },
     })
+    Supplier.getPayables = async function (filter) {
+        let total = []
+        let promise = new Promise((resolve, reject) => {
+            Supplier.find({ where: { and: [{ isenabled: 1},{totalamount:{gt:0}}] },fields: {totalamount: true, paid: true,} }, (err, supplier1) => {
+                //console.log(order)
+                let records = [{
+                    total:0,
+                    paid:0
+                }]
+                let amt=[]
+                let pay=[]
+                if(supplier1.length > 0) {
+                    let promise1 = new Promise((resolve1, reject1) => {
+                        for (let i = 0, p = Promise.resolve(); i < supplier1.length; i++) {
+                            p = p.then(_ => new Promise(resolve1 => {}))
+                            amt.push(supplier1[i].totalamount)
+                            pay.push(supplier1[i].paid)
+                        if (i == supplier1.length - 1) {
+                            resolve1()
+                        }
+                    }
+                    });
+              promise1.then((resolve1) => {
+                const reducer = (accumulator, currentValue) => accumulator + currentValue;
+                records[0].total= amt.reduce(reducer);
+                records[0].paid= pay.reduce(reducer);
+                    if(records[0].total > 0){
+                        resolve(records)
+                    }
+              });                    
+                }
+                else resolve(records)
+            })
+        })
+        total = await promise
+        return total
+    }
+    Supplier.remoteMethod('getPayables', {
+        returns: { arg: "total", type: 'array' },
+        "http": { "verb": "get", "path": "/getPayables" },
+    })
 };
