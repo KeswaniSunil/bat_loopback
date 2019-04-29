@@ -8,18 +8,24 @@ module.exports = function(options) {
      {
         next();
      }
+     else if(d == 'jdmit'){
+        let models = app.models();
+        models.forEach(function(model) {
+            if(model.modelName == 'Config' || 
+                model.modelName == 'Companydetails' || 
+                model.modelName == 'PendingAccounts' ||
+                model.modelName == 'User' ||
+                model.modelName == 'AccessToken' ||
+                model.modelName == 'ACL' ||
+                model.modelName == 'Role' ||
+                model.modelName == 'RoleMapping'){
+                model.attachTo(app.dataSources["jdm_main"]);
+            }
+        });
+        next();
+     }
      else{
      Config.find({include:['company'],where:{name:d}},function(err, configs){
-        // let dbName=new Array();
-        // for(let i=0;i<configs.length;i++)
-        // {
-        //     let p=configs[i].toJSON();
-        //     if(p.company.name == d)
-        //     {
-        //         dbName[0]=configs[i].dbName
-        //         break;
-        //     }
-        // }
         if(configs.length > 0)
         {
             //console.log(configs)
@@ -29,7 +35,7 @@ module.exports = function(options) {
                 //console.log("////////////////////////////////////////////////00000000000")
                 //console.log(app.dataSources[dtsrc])
             models.forEach(function(model) {
-                if(model.modelName != 'Config' && model.modelName != 'Companydetails'){
+                if(model.modelName != 'Config' && model.modelName != 'Companydetails' && model.modelName != 'PendingAccounts'){
                     model.attachTo(app.dataSources[dtsrc]);
                 }
                     //console.log(model.modelName)

@@ -8,13 +8,8 @@ let request = require('request')
 module.exports = function(server) {
   // Install a `/` route that returns server status
   let DataSource = require('../datasources')
+  let accountinfo = require('../accountinfo')
   
-  let con = mysql.createConnection({
-    host: DataSource.jdm_main.host,
-    user: DataSource.jdm_main.user,
-    password: DataSource.jdm_main.password,
-    //multipleStatements: true
-  });
   let backup = mysql.createConnection({
     host: DataSource.jdm_main.host,
     user: DataSource.jdm_main.user,
@@ -25,10 +20,7 @@ module.exports = function(server) {
   /********* Backup **********/
   let transporter = nodemailer.createTransport({
     service: "gmail",
-    auth: {
-      user: "dkmedialinks@gmail.com",
-      pass: "jdm@2017"
-    }
+    auth: accountinfo.email
   });
   cron.schedule("55 23 * * *", function () {
     console.log("---------------------");

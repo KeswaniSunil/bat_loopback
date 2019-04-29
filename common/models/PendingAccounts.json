@@ -1,6 +1,6 @@
 
 {
-  "name": "Companydetails",
+  "name": "PendingAccounts",
   "settings": {
     "strict": false,
     "forceId": false,
@@ -8,7 +8,7 @@
     "idInjection": false,
     "mysql": {
       "schema": "jdm_main",
-      "table": "companydetails"
+      "table": "PendingAccounts"
     }
   },
   "properties": {
@@ -29,14 +29,29 @@
       },
       "updateOnly": false
     },
-    "name": {
+    "companyname": {
       "type": "string",
       "required": true,
       "length": 100,
       "precision": null,
       "scale": null,
       "mysql": {
-        "columnName": "name",
+        "columnName": "companyname",
+        "dataType": "varchar",
+        "dataLength": 100,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "email": {
+      "type": "string",
+      "required": true,
+      "length": 100,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "email",
         "dataType": "varchar",
         "dataLength": 100,
         "dataPrecision": null,
@@ -59,91 +74,46 @@
         "nullable": "N"
       }
     },
-    "address": {
+    "otp": {
       "type": "string",
-      "required": false,
-      "length": 4294967295,
+      "required": true,
+      "length": 6,
       "precision": null,
-      "scale": null,
-      "mysql": {
-        "columnName": "address",
-        "dataType": "longtext",
-        "dataLength": 4294967295,
-        "dataPrecision": null,
-        "dataScale": null,
-        "nullable": "N"
-      }
-    },
-    "state": {
-      "type": "string",
-      "required": false,
-      "length": 50,
-      "precision": null,
-      "scale": null,
-      "mysql": {
-        "columnName": "state",
-        "dataType": "varchar",
-        "dataLength": 50,
-        "dataPrecision": null,
-        "dataScale": null,
-        "nullable": "N"
-      }
-    },
-    "city": {
-      "type": "string",
-      "required": false,
-      "length": 50,
-      "precision": null,
-      "scale": null,
-      "mysql": {
-        "columnName": "city",
-        "dataType": "varchar",
-        "dataLength": 50,
-        "dataPrecision": null,
-        "dataScale": null,
-        "nullable": "N"
-      }
-    },
-    "pincode": {
-      "type": "number",
-      "required": false,
-      "length": null,
-      "precision": 10,
       "scale": 0,
       "mysql": {
-        "columnName": "pinCode",
-        "dataType": "int",
-        "dataLength": null,
-        "dataPrecision": 10,
+        "columnName": "otp",
+        "dataType": "varchar",
+        "dataLength": 6,
+        "dataPrecision": null,
         "dataScale": 0,
         "nullable": "N"
       }
     },
-    "statecode": {
-      "type": "number",
-      "required": false,
+    "expiretime": {
+      "type": "date",
+      "required": true,
       "length": null,
-      "precision": 10,
-      "scale": 0,
-      "mysql": {
-        "columnName": "stateCode",
-        "dataType": "int",
-        "dataLength": null,
-        "dataPrecision": 10,
-        "dataScale": 0,
-        "nullable": "N"
-      }
-    },
-    "logo": {
-      "type": "string",
-      "required": false,
-      "length": 200,
       "precision": null,
       "scale": null,
       "mysql": {
-        "columnName": "logo",
-        "dataType": "varchar",
-        "dataLength": 200,
+        "columnName": "expiretime",
+        "dataType": "datetime",
+        "dataLength": null,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "createdon": {
+      "type": "date",
+      "required": true,
+      "length": null,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "createdon",
+        "dataType": "datetime",
+        "dataLength": null,
         "dataPrecision": null,
         "dataScale": null,
         "nullable": "N"
@@ -158,7 +128,28 @@
       "principalType": "ROLE",
       "principalId": "$everyone",
       "permission": "ALLOW",
-      "property": "updatedetails"
+      "property": "verifyotp"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "createaccount"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "sendotp"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "validateEmail"
     },
     {
       "accessType": "*",

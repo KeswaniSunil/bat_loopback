@@ -1,5 +1,6 @@
 'use strict';
 const uuidV4 = require('uuid/v4');
+let app = require("../../server/server")
 module.exports = function(Details) {
   Details.observe('before save', function(ctx, cb){
     if (ctx.instance) {
@@ -8,5 +9,5 @@ module.exports = function(Details) {
       ctx.data.id = uuidV4();
     }
     cb();
-  });    
+  });
 };

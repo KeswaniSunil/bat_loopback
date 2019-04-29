@@ -106,7 +106,7 @@ INSERT INTO `configuration` (`id`, `alias`, `value`, `description`) VALUES
 CREATE TABLE IF NOT EXISTS `customer` (
   `id` varchar(35) NOT NULL,
   `name` varchar(150) NOT NULL,
-  `customerTypeId` varchar(35) NOT NULL,
+  `customerTypeId` varchar(35) NULL,
   `mobile` varchar(10) NOT NULL,
   `email` varchar(60) DEFAULT NULL,
   `gstin` varchar(60) DEFAULT NULL,

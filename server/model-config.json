@@ -92,6 +92,10 @@
     "dataSource": "db1",
     "public": true
   },
+  "PendingAccounts": {
+    "dataSource": "jdm_main",
+    "public": true
+  },
   "Purchase": {
     "dataSource": "db1",
     "public": true
