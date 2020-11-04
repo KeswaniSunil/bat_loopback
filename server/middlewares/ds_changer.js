@@ -2,7 +2,7 @@ let app = require('../server');
 module.exports = function(options) {
   return function(req, res, next) {
     let Config= app.models.Config
-    //console.log(Config) 
+    console.log("ds_changer"); 
     let d=req.url.split('/')[1]
      if(req.url.search('explorer') > -1)
      {
@@ -28,7 +28,7 @@ module.exports = function(options) {
      Config.find({include:['company'],where:{name:d}},function(err, configs){
         if(configs.length > 0)
         {
-            //console.log(configs)
+             console.log("ds_changer");
             let models = app.models();
             let dtsrc=configs[0].dbName
                 //let dataSourceName = Model.getDataSource().settings.name;
@@ -37,8 +37,8 @@ module.exports = function(options) {
             models.forEach(function(model) {
                 if(model.modelName != 'Config' && model.modelName != 'Companydetails' && model.modelName != 'PendingAccounts'){
                     model.attachTo(app.dataSources[dtsrc]);
+                    // console.log(model.modelName)
                 }
-                    //console.log(model.modelName)
             });
             next();
         }

@@ -27,6 +27,8 @@ boot(app, __dirname, function(err) {
     {
       if(Configs[x].dbName != "jdm_main")
       {
+         console.log("Server.js");
+        // console.log(configs[x]);
         let DataSource = require('./datasources')
         var settings = {
           "host": DataSource.jdm_main.host,

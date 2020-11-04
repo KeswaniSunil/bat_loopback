@@ -28,7 +28,7 @@ module.exports = function(Config) {
                     var app = require('../../server/server')
                     app.dataSource(''+Configs[0].dbName,settings);
                     //var DataSources = require('loopback-datasource-juggler').DataSource;
-                    //console.log(DataSources)
+                    console.log("Config.js");
                     resolve("true")
                 }
                 else {
